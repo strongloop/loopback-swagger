@@ -1,6 +1,6 @@
 {
   "name": "loopback-swagger",
-  "version": "1.2.9",
+  "version": "1.0.0",
   "description": "Integration between LoopBack and Swagger API specs",
   "main": "index.js",
   "scripts": {
@@ -22,14 +22,14 @@
   },
   "devDependencies": {
     "chai": "~1.9.1",
-    "mocha": "~1.20.1"
+    "mocha": "~1.21.4"
   },
   "license": {
     "name": "Dual MIT/StrongLoop",
     "url": "https://github.com/strongloop/loopback-swagger/blob/master/LICENSE"
   },
   "dependencies": {
-    "debug": "~1.0.3",
+    "debug": "~1.0.4",
     "lodash.clonedeep": "^2.4.1",
     "lodash.defaults": "^2.4.1",
     "ejs": "~1.0.0"
