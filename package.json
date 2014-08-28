@@ -1,0 +1,37 @@
+{
+  "name": "loopback-swagger",
+  "version": "1.2.9",
+  "description": "Integration between LoopBack and Swagger API specs",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/strongloop/loopback-swagger.git"
+  },
+  "keywords": [
+    "loopback",
+    "api",
+    "swagger"
+  ],
+  "author": "Raymond Feng",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/strongloop/loopback-swagger/issues"
+  },
+  "devDependencies": {
+    "chai": "~1.9.1",
+    "mocha": "~1.20.1"
+  },
+  "license": {
+    "name": "Dual MIT/StrongLoop",
+    "url": "https://github.com/strongloop/loopback-swagger/blob/master/LICENSE"
+  },
+  "dependencies": {
+    "debug": "~1.0.3",
+    "lodash.clonedeep": "^2.4.1",
+    "lodash.defaults": "^2.4.1",
+    "ejs": "~1.0.0"
+  }
+}

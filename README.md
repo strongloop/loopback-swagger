@@ -1,4 +1,4 @@
-loopback-swagger
-================
+# loopback-swagger
 
-LoopBack Swagger Spec Integration
+Utilities to transform between Swagger API specs and LoopBack remoting metadata. 
+
