@@ -15,7 +15,7 @@ function getGenerator(spec) {
 }
 
 exports.generateRemoteMethods = function(spec, options) {
-  getGenerator(spec).generateRemoteMethods(spec, options);
+  return getGenerator(spec).generateRemoteMethods(spec, options);
 };
 
 exports.generateModels = function (spec, options) {
@@ -27,7 +27,7 @@ exports.generateModels = function (spec, options) {
   } else {
     throw new Error('Swagger spec version is not supported');
   }
-  generateModels(models, options || {});
+  return generateModels(models, options || {});
 };
 
 exports.getGenerator = getGenerator;
