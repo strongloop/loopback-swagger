@@ -1,9 +1,9 @@
+/* global describe, it */
 var schemaParser = require('../lib/json-schema');
 var spec = require('./pet-expanded.json');
-var assert = require('assert');
 var expect = require('chai').expect;
 
-describe('json schema convertor', function() {
+describe('json schema converter', function() {
   it('should handle allOf', function() {
     var models = schemaParser(spec.definitions);
     expect(models).have.property('pet');
