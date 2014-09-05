@@ -1,6 +1,6 @@
 {
   "name": "loopback-swagger",
-  "version": "1.0.0-beta1",
+  "version": "1.0.0-beta2",
   "description": "Integration between LoopBack and Swagger API specs",
   "main": "index.js",
   "scripts": {
