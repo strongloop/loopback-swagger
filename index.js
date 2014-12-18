@@ -36,7 +36,7 @@ exports.generateCode = function (version, modelName, operations) {
   if (version === '1.2') {
     spec.swaggerVersion = '1.2';
   } else {
-    spec.swagger = 2;
+    spec.swagger = '2.0';
   }
   return getGenerator(spec).generateCodeForOperations(modelName, operations);
 };
