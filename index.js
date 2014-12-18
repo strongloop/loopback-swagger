@@ -4,7 +4,7 @@ var generateModels = require('./lib/json-schema');
 
 function getGenerator(spec) {
   var generator;
-  if (spec && spec.swagger === 2) {
+  if (spec && spec.swagger === '2.0') {
     generator = new V2Generator();
   } else if (spec && spec.swaggerVersion === '1.2') {
     generator = new V12Generator();
@@ -49,7 +49,7 @@ exports.generateCode = function (version, modelName, operations) {
  */
 exports.generateModels = function (spec, options) {
   var models;
-  if (spec && spec.swagger === 2) {
+  if (spec && spec.swagger === '2.0') {
     models = spec.definitions;
   } else if (spec && spec.swaggerVersion === '1.2') {
     models = spec.models;
