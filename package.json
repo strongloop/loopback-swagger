@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "chai": "^3.2.0",
+    "loopback": "^2.21.0",
+    "loopback-datasource-juggler": "^2.39.0",
     "mocha": "^2.3.0"
   },
   "license": {

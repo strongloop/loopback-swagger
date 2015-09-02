@@ -1,6 +1,7 @@
 var V2Generator = require('./lib/codegen/generator-v2');
 var V12Generator = require('./lib/codegen/generator-v1.2');
 var generateModels = require('./lib/codegen/json-schema');
+var generateSwaggerSpec = require('./lib/specgen/swagger-spec-generator');
 
 function getGenerator(spec) {
   var generator;
@@ -61,3 +62,4 @@ exports.generateModels = function (spec, options) {
 
 exports.getGenerator = getGenerator;
 
+exports.generateSwaggerSpec = generateSwaggerSpec;
