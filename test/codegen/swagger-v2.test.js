@@ -1,7 +1,7 @@
 var expect = require('chai').expect;
-var V2Generator = require('../lib/generator-v2');
+var V2Generator = require('../../lib/codegen/generator-v2');
 
-var petStoreV2Spec = require('../example/pet-store-2.0.json');
+var petStoreV2Spec = require('../../example/pet-store-2.0.json');
 var generator = new V2Generator();
 
 describe('Swagger spec v2 generator', function() {

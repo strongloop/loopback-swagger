@@ -1,6 +1,6 @@
-var V2Generator = require('./lib/generator-v2');
-var V12Generator = require('./lib/generator-v1.2.js');
-var generateModels = require('./lib/json-schema');
+var V2Generator = require('./lib/codegen/generator-v2');
+var V12Generator = require('./lib/codegen/generator-v1.2');
+var generateModels = require('./lib/codegen/json-schema');
 
 function getGenerator(spec) {
   var generator;

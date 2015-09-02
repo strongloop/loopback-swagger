@@ -1,5 +1,5 @@
 /* global describe, it */
-var schemaParser = require('../lib/json-schema');
+var schemaParser = require('../../lib/codegen/json-schema');
 var spec = require('./pet-expanded.json');
 var expect = require('chai').expect;
 
