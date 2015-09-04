@@ -1,3 +1,11 @@
+2015-09-04, Version 2.1.1
+=========================
+
+ * README: link to loopback-explorer (Miroslav Bajtoš)
+
+ * Remove the Labs label (Miroslav Bajtoš)
+
+
 2015-09-03, Version 2.1.0
 =========================
 
