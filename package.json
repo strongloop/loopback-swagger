@@ -27,10 +27,7 @@
     "loopback-datasource-juggler": "^2.39.0",
     "mocha": "^2.3.0"
   },
-  "license": {
-    "name": "Dual MIT/StrongLoop",
-    "url": "https://github.com/strongloop/loopback-swagger/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "dependencies": {
     "async": "^1.4.2",
     "debug": "^2.2.0",
