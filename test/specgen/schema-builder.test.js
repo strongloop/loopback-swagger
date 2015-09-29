@@ -69,6 +69,8 @@ describe('schema-builder', function() {
       out: { type: 'string' } }, // the flag required is handled specially
     { in: { type: String, length: 10 },
       out: { type: 'string', maxLength: 10 } },
+    { in: { type: String, length: null },
+      out: { type: 'string' } },
   ]);
 
   function describeTestCases(name, testCases) {
