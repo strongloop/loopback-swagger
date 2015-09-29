@@ -1,3 +1,11 @@
+2015-09-29, Version 2.1.2
+=========================
+
+ * Skip null values for length (Raymond Feng)
+
+ * Use strongloop conventions for licensing (Sam Roberts)
+
+
 2015-09-04, Version 2.1.1
 =========================
 
