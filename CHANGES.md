@@ -1,3 +1,11 @@
+2015-10-14, Version 2.2.0
+=========================
+
+ * Add support for array types/refs (Raymond Feng)
+
+ * Reformat the code (Raymond Feng)
+
+
 2015-09-29, Version 2.1.2
 =========================
 
