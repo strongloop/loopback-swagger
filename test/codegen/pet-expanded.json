@@ -172,6 +172,29 @@
     }
   },
   "definitions": {
+    "stringList": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "petList": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/pet"
+      }
+    },
+    "petGroup": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "pets": {
+          "$ref": "#/definitions/petList"
+        }
+      }
+    },
     "pet": {
       "required": [
         "id",
@@ -185,8 +208,8 @@
         "name": {
           "type": "string"
         },
-        "tag": {
-          "type": "string"
+        "tags": {
+          "$ref": "#/definitions/stringList"
         }
       }
     },
