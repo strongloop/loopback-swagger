@@ -73,6 +73,11 @@ describe('schema-builder', function() {
       out: { type: 'string' } },
   ]);
 
+  describeTestCases('for built-in LoopBack types', [
+    { in: { type: 'ObjectID', doc: 'a-description' },
+      out: { $ref: "#/definitions/ObjectID", description: 'a-description' }}
+  ]);
+
   function describeTestCases(name, testCases) {
     describe(name, function() {
       testCases.forEach(function(tc) {
