@@ -1,3 +1,13 @@
+2015-11-03, Version 2.2.1
+=========================
+
+ * type-registry: code cleanup (Miroslav Bajtoš)
+
+ * Register ObjectID for MongoDB, fix cause warning: Swagger: skipping unknown type "ObjectID" (Van-Duyet Le)
+
+ * map ObjectID to string type (Clark Wang)
+
+
 2015-10-14, Version 2.2.0
 =========================
 
