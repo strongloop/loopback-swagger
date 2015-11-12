@@ -1,5 +1,6 @@
 'use strict';
 
+var _ = require('lodash');
 var url = require('url');
 var loopback = require('loopback');
 var createSwaggerObject = require('../..').generateSwaggerSpec;
@@ -297,6 +298,36 @@ describe('swagger definition', function() {
       var swaggerResource = createSwaggerObject(app);
       expect(Object.keys(swaggerResource.definitions))
         .to.include.members(['Address', 'Warehouse']);
+    });
+  });
+
+  describe('paths node', function() {
+    it('has unique operation ids', function() {
+      var app = createLoopbackAppWithModel();
+      app.models.Product.remoteMethod('multipath', {
+        isStatic: true,
+        http: [
+          { verb: 'get', path: '/multipath' },
+          { verb: 'post', path: '/multipath' }
+        ]
+      });
+
+      var swaggerResource = createSwaggerObject(app);
+      // extract swaggerResource.{path}.{verb}.operationId
+      var ids = _(swaggerResource.paths)
+        .values()
+        .map(_.values)
+        .flatten()
+        .map(_.property('operationId'))
+        .value();
+
+      var conflicts = _(ids).countBy().reduce(function(result, value, key) {
+        return value > 1 ? result.concat([key]) : result;
+      }, []);
+
+      expect(conflicts, 'duplicate ids').to.be.have.length(0);
+      expect(swaggerResource.paths['/Products/multipath'].get.operationId)
+        .to.contain('Product.multipath');
     });
   });
 

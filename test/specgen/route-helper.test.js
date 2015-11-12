@@ -109,7 +109,7 @@ describe('route-helper', function() {
         verb: 'get',
         path: 'path',
         description: ['1', '2', '3']
-      });
+      }, null, new TypeRegistry(), Object.create(null));
       expect(result.operation.summary).to.eql('1\n2\n3');
     });
 
@@ -119,7 +119,7 @@ describe('route-helper', function() {
         verb: 'get',
         path: 'path',
         notes: ['1', '2', '3']
-      });
+      }, null, new TypeRegistry(), Object.create(null));
       expect(result.operation.description).to.eql("1\n2\n3");
     });
   });
@@ -271,7 +271,7 @@ function createAPIDoc(def, classDef) {
     path: '/test',
     verb: 'GET',
     method: 'test.get'
-  }), classDef, new TypeRegistry());
+  }), classDef, new TypeRegistry(), Object.create(null));
 }
 
 function getResponseMessage(operationDoc) {
