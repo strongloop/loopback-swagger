@@ -75,7 +75,9 @@ describe('schema-builder', function() {
 
   describeTestCases('for built-in LoopBack types', [
     { in: { type: 'ObjectID', doc: 'a-description' },
-      out: { $ref: "#/definitions/ObjectID", description: 'a-description' }}
+      out: { $ref: "#/definitions/ObjectID", description: 'a-description' }},
+    { in: { type: 'GeoPoint', doc: '{lng: 10, lat: 20}' },
+      out: { $ref: "#/definitions/GeoPoint", description: '{lng: 10, lat: 20}' }}
   ]);
 
   function describeTestCases(name, testCases) {
