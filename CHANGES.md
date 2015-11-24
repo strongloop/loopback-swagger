@@ -1,3 +1,13 @@
+2015-11-24, Version 2.2.2
+=========================
+
+ * specgen: ensure operation ids are unique (Miroslav Bajtoš)
+
+ * Fix typo (Candy)
+
+ * Refer to licenses with a link (Sam Roberts)
+
+
 2015-11-03, Version 2.2.1
 =========================
 
