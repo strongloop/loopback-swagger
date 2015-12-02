@@ -1,3 +1,13 @@
+2015-12-02, Version 2.2.3
+=========================
+
+ * specgen: fix the definition of GeoPoint type (Miroslav Bajtoš)
+
+ * Fix: hidden models referenced by hidden models (Miroslav Bajtoš)
+
+ * Add GeoPoint support to explorer. (Candy)
+
+
 2015-11-24, Version 2.2.2
 =========================
 
