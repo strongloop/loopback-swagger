@@ -299,6 +299,30 @@ describe('swagger definition', function() {
       expect(Object.keys(swaggerResource.definitions))
         .to.include.members(['Address', 'Warehouse']);
     });
+
+    it('includes hidden models referenced by public models', function() {
+      var app = loopback({ localRegistry: true, loadBuiltinModels: true });
+      app.dataSource('db', { connector: 'memory' });
+      app.model(app.registry.AccessToken, { public: false, dataSource: 'db' });
+      app.model(app.registry.User, { public: true, dataSource: 'db' });
+
+      var swaggerResource = createSwaggerObject(app);
+
+      expect(Object.keys(swaggerResource.definitions))
+        .to.include.members(['AccessToken']);
+    });
+
+    it('excludes hidden models referenced by hidden models only', function() {
+      var app = loopback({ localRegistry: true, loadBuiltinModels: true });
+      app.dataSource('db', { connector: 'memory' });
+      app.model(app.registry.RoleMapping, { public: false, dataSource: 'db' });
+      app.model(app.registry.Role, { public: false, dataSource: 'db' });
+
+      var swaggerResource = createSwaggerObject(app);
+
+      expect(Object.keys(swaggerResource.definitions))
+        .to.not.include.members(['Role', 'RoleMapping']);
+    });
   });
 
   describe('paths node', function() {
