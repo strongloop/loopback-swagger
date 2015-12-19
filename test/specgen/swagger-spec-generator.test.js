@@ -323,6 +323,25 @@ describe('swagger definition', function() {
       expect(Object.keys(swaggerResource.definitions))
         .to.not.include.members(['Role', 'RoleMapping']);
     });
+
+    it('excludes definitions referenced by hidden models', function() {
+      var app = loopback({ localRegistry: true });
+      var MyModel = app.registry.createModel({
+        name: 'MyModel',
+        base: 'Model',
+        properties: {
+          data: { type: 'any' }
+        }
+      });
+      app.model(MyModel, { public: false, dataSource: null });
+
+      var swaggerResource = createSwaggerObject(app);
+
+      // the app does not have any public models,
+      // therefore there should be no definitions
+      expect(Object.keys(swaggerResource.definitions))
+        .to.have.length(0);
+    });
   });
 
   describe('paths node', function() {
