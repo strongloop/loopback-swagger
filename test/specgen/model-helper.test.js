@@ -123,6 +123,28 @@ describe('model-helper', function() {
     var def = getDefinitionsForModel(aClass.ctor).testModel;
     expect(def).to.not.have.property('required');
   });
+
+  describe('Test different properties', function() {
+    it('invalid properties', function() {
+      var model = {};
+      model.definition = {
+        name: 'test',
+        properties: {
+          "value": {
+            "type": "number",
+            "required": true
+          },
+          "questionIndex": {
+            "type": {
+              "required": true
+            }
+          }
+        }
+      };
+      var defs = getDefinitionsForModel(model);
+      expect(defs.test.properties.questionIndex).to.have.property('type');
+    });
+  });
 });
 
 // Simulates the format of a remoting class.
