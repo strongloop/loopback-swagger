@@ -123,6 +123,37 @@ describe('model-helper', function() {
     var def = getDefinitionsForModel(aClass.ctor).testModel;
     expect(def).to.not.have.property('required');
   });
+
+  describe('property converter', function() {
+    it('converts properties with no type to type "any"', function() {
+      var model = {};
+      model.definition = {
+        name: 'test',
+        properties: {
+          questionIndex: {
+            required: true
+          }
+        }
+      };
+      var defs = getDefinitionsForModel(model);
+      expect(defs.test.properties.questionIndex).to.have.property('$ref', '#/definitions/x-any');
+    });
+
+    it('converts array properties with no type to an array of type "any"', function() {
+      var model = {};
+      model.definition = {
+        name: 'test',
+        properties: {
+          questions: [{
+            required: true
+          }]
+        }
+      };
+      var defs = getDefinitionsForModel(model);
+      expect(defs.test.properties.questions).to.have.property('type', 'array');
+      expect(defs.test.properties.questions).to.have.property('items').eql({ '$ref': '#/definitions/x-any' });
+    });
+  });
 });
 
 // Simulates the format of a remoting class.
