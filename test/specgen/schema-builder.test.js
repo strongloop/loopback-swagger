@@ -51,6 +51,8 @@ describe('schema-builder', function() {
       out: { $ref: '#/definitions/User' } },
     { in: { type: 'User' },
       out: { $ref: '#/definitions/User' } },
+    { in: { type: 'user' },
+      out: { $ref: '#/definitions/user' } },
     // Anonymous type
     { in: { type: { foo: 'string', bar: 'number' } },
       out: { type: 'object' } },
@@ -76,7 +78,15 @@ describe('schema-builder', function() {
   describeTestCases('for built-in LoopBack types', [
     { in: { type: 'ObjectID', doc: 'a-description' },
       out: { $ref: "#/definitions/ObjectID", description: 'a-description' }},
+    { in: { type: 'objectid', doc: 'a-description' },
+      out: { $ref: "#/definitions/ObjectID", description: 'a-description' }},
+    { in: { type: 'OBJECTID', doc: 'a-description' },
+      out: { $ref: "#/definitions/ObjectID", description: 'a-description' }},
     { in: { type: 'GeoPoint', doc: '{lng: 10, lat: 20}' },
+      out: { $ref: "#/definitions/GeoPoint", description: '{lng: 10, lat: 20}' }},
+    { in: { type: 'geopoint', doc: '{lng: 10, lat: 20}' },
+      out: { $ref: "#/definitions/GeoPoint", description: '{lng: 10, lat: 20}' }},
+    { in: { type: 'GEOPOINT', doc: '{lng: 10, lat: 20}' },
       out: { $ref: "#/definitions/GeoPoint", description: '{lng: 10, lat: 20}' }}
   ]);
 
