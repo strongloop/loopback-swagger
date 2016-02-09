@@ -1,3 +1,15 @@
+2016-02-09, Version 2.3.0
+=========================
+
+ * Make type geopoint case insensitive (Candy)
+
+ * Treat property as type 'any' if not specified (Candy)
+
+ * Exclude definition that are not referenced (Candy)
+
+ * Fix handling of allOf when generating models (Gari Singh)
+
+
 2015-12-02, Version 2.2.3
 =========================
 
