@@ -11,7 +11,9 @@
     "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
   }
 }, "basePath": "/v2", "paths": {
+  "x-xyz-paths-ext": "p1",
   "/user/createWithList": {
+    "x-xyz-path-ext": "p2",
     "post": {
       "tags": ["user"],
       "summary": "Creates list of users with given input array",
