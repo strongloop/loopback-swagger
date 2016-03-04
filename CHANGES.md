@@ -1,3 +1,9 @@
+2016-03-04, Version 2.3.1
+=========================
+
+ * Handle extensions under paths (Raymond Feng)
+
+
 2016-02-09, Version 2.3.0
 =========================
 
