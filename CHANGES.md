@@ -1,4 +1,10 @@
-2016-03-04, Version 2.3.1
+2016-03-19, Version 2.3.2
+=========================
+
+ * Handle {id} and . in operation id (Raymond Feng)
+
+
+2016-03-03, Version 2.3.1
 =========================
 
  * Handle extensions under paths (Raymond Feng)
