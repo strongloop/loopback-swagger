@@ -231,6 +231,31 @@ describe('route-helper', function() {
     });
   });
 
+  it('includes custom http status code and override default success code in `responseMessages`', function() {
+    var doc = createAPIDoc({
+      http: {
+        status: 201
+      }
+    });
+    expect(doc.operation.responses).to.have.property(201).eql({
+      description: 'Request was successful',
+      schema: undefined
+    });
+    expect(doc.operation.responses).to.not.have.property(200);
+    expect(doc.operation.responses).to.not.have.property(204);
+  });
+
+  it('includes custom http error status code in `responseMessages`', function() {
+    var doc = createAPIDoc({
+      http: {
+        errorStatus: 508 
+      }
+    });
+    expect(doc.operation.responses).to.have.property(508).eql({
+      description: 'Unknown error'
+    });
+  });
+
   it('route operationId DOES include model name.', function() {
     var doc = createAPIDoc({ method: 'User.login' });
     expect(doc.operation.operationId).to.equal('User.login');
