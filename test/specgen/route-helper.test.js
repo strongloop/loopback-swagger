@@ -4,19 +4,86 @@ var routeHelper = require('../../lib/specgen/route-helper');
 var TypeRegistry = require('../../lib/specgen/type-registry');
 var expect = require('chai').expect;
 var _defaults = require('lodash').defaults;
+var loopback = require('loopback');
 
 describe('route-helper', function() {
   it('returns "object" when a route has multiple return values', function() {
+    var TestModel = loopback.createModel('TestModel', {street: String});
     var entry = createAPIDoc({
       returns: [
         { arg: 'max', type: 'number' },
         { arg: 'min', type: 'number' },
-        { arg: 'avg', type: 'number' }
+        { name: 'avg', type: 'number' },
+        { name: 'str', type: String },
+        { name: 'strArray', type: [String] },
+        { name: 'testModel', type: TestModel },
+        { name: 'testModelStr', type: 'TestModel' },
+        { name: 'testModelArray', type: [TestModel] },
+        { name: 'testModelArrayArray', type: [[TestModel]] },
+        { name: 'unknownModel', type: 'UnknownModel' },
+        { name: 'requiredStr', type: String, required: true }
       ]
     });
-    // TODO use a custom (dynamicaly-created) model schema instead of "object"
-    expect(getResponseMessage(entry.operation))
-      .to.have.property('schema').eql({ type: 'object' });
+    var responseMessage = getResponseMessage(entry.operation);
+    (((responseMessage || {}).schema || {}).required || []).sort(); // sort the array for the comparison below
+    expect(responseMessage)
+      .to.have.property('schema').eql({
+        type: 'object',
+        properties: {
+          max: { type: 'number', format: 'double' },
+          min: { type: 'number', format: 'double' },
+          avg: { type: 'number', format: 'double' },
+          str: { type: 'string' },
+          strArray: {
+            items: {
+              type: 'string'
+            },
+            type: 'array'
+          },
+          testModel: {
+            type: 'object' // TODO - emit '$ref': '#/definitions/TestModel' after registering it
+          },
+          testModelArray: {
+            items: {
+              type: 'object' // TODO - emit '$ref': '#/definitions/TestModel' after registering it
+            },
+            type: 'array'
+          },
+          testModelArrayArray: {
+            items: {
+              items: {
+                type: 'object' // TODO - emit '$ref': '#/definitions/TestModel' after registering it
+              },
+              type: 'array'
+            },
+            type: 'array'
+          },
+          testModelStr: {
+            type: 'object' // TODO - emit '$ref': '#/definitions/TestModel' after registering it
+          },
+          unknownModel: {
+            type: 'object' // unknown model is converted to plain object
+          },
+          requiredStr: { type: 'string' }
+        },
+        required: [
+          'requiredStr'
+        ]
+      });
+  });
+
+  it('converts { type: ReadableStream\' } to { schema: { type: \'file\' } }', function() {
+    var TestModel = loopback.createModel('TestModel', {street: String});
+    var entry = createAPIDoc({
+      returns: [
+        { name: 'changes', type: 'ReadableStream' }
+      ]
+    });
+    var responseMessage = getResponseMessage(entry.operation);
+    expect(responseMessage)
+      .to.have.property('schema').eql({
+        type: 'file'
+      });
   });
 
   it('converts path params when they exist in the route name', function() {
@@ -248,7 +315,7 @@ describe('route-helper', function() {
   it('includes custom http error status code in `responseMessages`', function() {
     var doc = createAPIDoc({
       http: {
-        errorStatus: 508 
+        errorStatus: 508
       }
     });
     expect(doc.operation.responses).to.have.property(508).eql({
