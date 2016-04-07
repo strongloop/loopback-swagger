@@ -1,3 +1,11 @@
+2016-04-07, Version 2.4.0
+=========================
+
+ * improve scheme generation for return object (hideya kawahara)
+
+ * Support default status codes (Candy)
+
+
 2016-03-19, Version 2.3.2
 =========================
 
