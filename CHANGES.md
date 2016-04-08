@@ -1,3 +1,9 @@
+2016-04-08, Version 2.4.1
+=========================
+
+ * Disable the warning as it prints messages during loopback scaffolding (Raymond Feng)
+
+
 2016-04-07, Version 2.4.0
 =========================
 
