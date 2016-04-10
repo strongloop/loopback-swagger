@@ -115,5 +115,4 @@ describe('schema-builder', function() {
 
     return format(type);
   }
-
 });

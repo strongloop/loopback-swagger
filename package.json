@@ -4,7 +4,9 @@
   "description": "Integration between LoopBack and Swagger API specs",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint .",
+    "posttest": "npm run lint"
   },
   "repository": {
     "type": "git",

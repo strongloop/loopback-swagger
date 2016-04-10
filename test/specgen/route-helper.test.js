@@ -298,7 +298,8 @@ describe('route-helper', function() {
     });
   });
 
-  it('includes custom http status code and override default success code in `responseMessages`', function() {
+  it('includes custom http status code and override default ' +
+    'success code in `responseMessages`', function() {
     var doc = createAPIDoc({
       http: {
         status: 201,
@@ -367,6 +368,6 @@ function createAPIDoc(def, classDef) {
 }
 
 function getResponseMessage(operationDoc) {
-  return operationDoc.responses[200] || operationDoc.responses[204]
-    || operationDoc.responses.default;
+  return operationDoc.responses[200] || operationDoc.responses[204] ||
+    operationDoc.responses.default;
 }
