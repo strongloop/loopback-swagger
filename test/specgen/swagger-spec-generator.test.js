@@ -47,7 +47,7 @@ describe('swagger definition', function() {
     it('is "{basePath}" when basePath is a path', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app, {
-        basePath: '/api-root'
+        basePath: '/api-root',
       });
 
       expect(swaggerResource.basePath).to.equal('/api-root');
@@ -63,7 +63,7 @@ describe('swagger definition', function() {
     it('respects a hardcoded protocol (behind SSL terminator)', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app, {
-        protocol: 'https'
+        protocol: 'https',
       });
       expect(swaggerResource.schemes).to.eql(['https']);
     });
@@ -71,7 +71,7 @@ describe('swagger definition', function() {
     it('supports opts.host', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app, {
-        host: 'example.com:8080'
+        host: 'example.com:8080',
       });
       expect(swaggerResource.host).to.equal('example.com:8080');
     });
@@ -83,7 +83,7 @@ describe('swagger definition', function() {
     expect(swaggerResource.consumes).to.have.members([
       'application/json',
       'application/x-www-form-urlencoded',
-      'application/xml', 'text/xml'
+      'application/xml', 'text/xml',
     ]);
   });
 
@@ -94,7 +94,7 @@ describe('swagger definition', function() {
       'application/json',
       'application/xml', 'text/xml',
       // JSONP content types
-      'application/javascript', 'text/javascript'
+      'application/javascript', 'text/javascript',
     ]);
   });
 
@@ -103,7 +103,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app);
       expect(swaggerResource.tags).to.eql([
-        { name: 'Product', description: 'a-description\nline2' }
+        { name: 'Product', description: 'a-description\nline2' },
       ]);
     });
   });
@@ -140,7 +140,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       givenPrivateAppModel(app, 'Image');
       givenSharedMethod(app.models.Product, 'setImage', {
-        accepts: { name: 'image', type: 'Image' }
+        accepts: { name: 'image', type: 'Image' },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -151,7 +151,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       givenPrivateAppModel(app, 'Image');
       givenSharedMethod(app.models.Product, 'getImage', {
-        returns: { name: 'image', type: 'Image', root: true }
+        returns: { name: 'image', type: 'Image', root: true },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -162,7 +162,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       loopback.createModel('Image');
       givenSharedMethod(app.models.Product, 'setImage', {
-        accepts: { name: 'image', type: 'Image' }
+        accepts: { name: 'image', type: 'Image' },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -176,8 +176,8 @@ describe('swagger definition', function() {
         errors: [{
           code: '422',
           message: 'Validation failed',
-          responseModel: 'ValidationError'
-        }]
+          responseModel: 'ValidationError',
+        }],
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -236,7 +236,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        accepts: { arg: 'w', type: 'Warehouse' }
+        accepts: { arg: 'w', type: 'Warehouse' },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -249,7 +249,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        accepts: { arg: 'w', type: ['Warehouse'] }
+        accepts: { arg: 'w', type: ['Warehouse'] },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -262,7 +262,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        returns: { arg: 'w', type: 'Warehouse', root: true }
+        returns: { arg: 'w', type: 'Warehouse', root: true },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -275,7 +275,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        returns: { arg: 'w', type: ['Warehouse'], root: true }
+        returns: { arg: 'w', type: ['Warehouse'], root: true },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -291,8 +291,8 @@ describe('swagger definition', function() {
         errors: {
           code: '222',
           message: 'Warehouse',
-          responseModel: 'Warehouse'
-        }
+          responseModel: 'Warehouse',
+        },
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -330,8 +330,8 @@ describe('swagger definition', function() {
         name: 'MyModel',
         base: 'Model',
         properties: {
-          data: { type: 'any' }
-        }
+          data: { type: 'any' },
+        },
       });
       app.model(MyModel, { public: false, dataSource: null });
 
@@ -351,8 +351,8 @@ describe('swagger definition', function() {
         isStatic: true,
         http: [
           { verb: 'get', path: '/multipath' },
-          { verb: 'post', path: '/multipath' }
-        ]
+          { verb: 'post', path: '/multipath' },
+        ],
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -380,9 +380,9 @@ describe('swagger definition', function() {
     app.dataSource('db', { connector: 'memory' });
 
     var Product = loopback.createModel('Product', {
-      foo: {type: 'string', required: true},
+      foo: { type: 'string', required: true },
       bar: 'string',
-      aNum: {type: 'number', min: 1, max: 10, required: true, default: 5}
+      aNum: { type: 'number', min: 1, max: 10, required: true, default: 5 },
     }, { description: ['a-description', 'line2']  });
     app.model(Product, { dataSource: 'db' });
 
@@ -406,7 +406,7 @@ describe('swagger definition', function() {
   function givenWarehouseWithAddressModels(app) {
     givenPrivateAppModel(app, 'Address');
     givenPrivateAppModel(app, 'Warehouse', {
-      shippingAddress: { type: 'Address' }
+      shippingAddress: { type: 'Address' },
     });
   }
 

@@ -9,13 +9,13 @@ describe('Swagger spec v2 generator', function() {
 
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(petStoreV2Spec,
-      {modelName: 'Store'});
+      { modelName: 'Store' });
     expect(code).to.be.string;
   });
 
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(pet2,
-      {modelName: 'Pet'});
+      { modelName: 'Pet' });
     expect(code).contain('Pet.PetFindPets = function(tags, limit, callback)');
     expect(code).contain('Pet.remoteMethod(\'PetFindPets\'');
     expect(code).contain('Pet.findPetByIdId = function(id, callback)');
