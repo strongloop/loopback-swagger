@@ -32,7 +32,7 @@ exports.generateRemoteMethods = function(spec, options) {
  * @param {BaseOperation[]} operations
  * @returns {String}
  */
-exports.generateCode = function (version, modelName, operations) {
+exports.generateCode = function(version, modelName, operations) {
   var spec = {};
   if (version === '1.2') {
     spec.swaggerVersion = '1.2';
@@ -48,7 +48,7 @@ exports.generateCode = function (version, modelName, operations) {
  * @param {Object} options
  * @returns {Object}
  */
-exports.generateModels = function (spec, options) {
+exports.generateModels = function(spec, options) {
   var models;
   if (spec && spec.swagger === '2.0') {
     models = spec.definitions;
