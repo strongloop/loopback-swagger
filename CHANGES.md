@@ -1,4 +1,16 @@
-2016-04-08, Version 2.4.1
+2016-04-13, Version 2.4.2
+=========================
+
+ * Do not generate required if no item is present (Raymond Feng)
+
+ * Fix linting errors (Amir Jafarian)
+
+ * Auto-update by eslint --fix (Amir Jafarian)
+
+ * Add eslint infrastructure (Amir Jafarian)
+
+
+2016-04-07, Version 2.4.1
 =========================
 
  * Disable the warning as it prints messages during loopback scaffolding (Raymond Feng)
