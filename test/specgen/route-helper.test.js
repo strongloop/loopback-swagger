@@ -72,6 +72,19 @@ describe('route-helper', function() {
       });
   });
 
+  it('does not produce required array if no required property is defined', function() {
+    var TestModel = loopback.createModel('TestModel', { street: String });
+    var entry = createAPIDoc({
+      returns: [
+        { arg: 'max', type: 'number' },
+        { arg: 'min', type: 'number' },
+      ],
+    });
+    var responseMessage = getResponseMessage(entry.operation);
+    expect(responseMessage.schema).to.not.have.property('required');
+  });
+
+
   it('converts { type: ReadableStream\' } to { schema: { type: \'file\' } }', function() {
     var TestModel = loopback.createModel('TestModel', { street: String });
     var entry = createAPIDoc({
