@@ -1,3 +1,8 @@
+// Copyright IBM Corp. 2014,2016. All Rights Reserved.
+// Node module: loopback-swagger
+// This file is licensed under the MIT License.
+// License text available at https://opensource.org/licenses/MIT
+
 var V2Generator = require('./lib/codegen/generator-v2');
 var V12Generator = require('./lib/codegen/generator-v1.2');
 var generateModels = require('./lib/codegen/json-schema');
