@@ -158,6 +158,23 @@ describe('model-helper', function() {
       expect(defs.test.properties.questions).to.have.property('type', 'array');
       expect(defs.test.properties.questions).to.have.property('items').eql({ '$ref': '#/definitions/x-any' });
     });
+    
+    it('generates custom extentions for swagger', function() {
+      var model = {};
+      model.definition = {
+        name: 'test',
+        settings: {
+          'x-myDef': 'myCustomDef',
+          'xIgnore': 'ignoreThisDef',
+        },
+        properties: {},
+      };
+      var defs = getDefinitionsForModel(model);
+      expect(defs.test)
+        .to.have.property('x-myDef');
+      expect(defs.test)
+        .to.not.have.property('xIgnore');
+    });
   });
 });
 
