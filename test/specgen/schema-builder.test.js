@@ -18,7 +18,7 @@ describe('schema-builder', function() {
   describeTestCases('for constructor types', [
     { in: String, out: { type: 'string' }},
     { in: Number, out: { type: 'number', format: 'double' }},
-    { in: Date, out: { type: 'string', format: 'datetime' }},
+    { in: Date, out: { type: 'string', format: 'date-time' }},
     { in: Boolean, out: { type: 'boolean' }},
     { in: Buffer, out: { type: 'string', format: 'byte' }},
   ]);
@@ -26,7 +26,7 @@ describe('schema-builder', function() {
   describeTestCases('for string types', [
     { in: 'string', out: { type: 'string' }},
     { in: 'number', out: { type: 'number', format: 'double' }},
-    { in: 'date', out: { type: 'string', format: 'datetime' }},
+    { in: 'date', out: { type: 'string', format: 'date-time' }},
     { in: 'boolean', out: { type: 'boolean' }},
     { in: 'buffer', out: { type: 'string', format: 'byte' }},
   ]);
@@ -39,7 +39,7 @@ describe('schema-builder', function() {
     { in: [{ type: 'string', maxLength: 64 }],
       out: { type: 'array', items: { type: 'string', maxLength: 64 }}},
     { in: [{ type: 'date' }],
-      out: { type: 'array', items: { type: 'string', format: 'datetime' }}},
+      out: { type: 'array', items: { type: 'string', format: 'date-time' }}},
     { in: [],
       out: { type: 'array', items: ANY_TYPE }},
     // This value is somehow provided by loopback-boot called from
