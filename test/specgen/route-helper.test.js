@@ -316,6 +316,27 @@ describe('route-helper', function() {
     });
   });
 
+  it('allows setting null for `responseModel`', function() {
+    var doc = createAPIDoc({
+      errors: [{
+        code: 422,
+        message: 'Validation',
+        responseModel: null,
+      }],
+    });
+    expect(doc.schema).to.be.undefined;
+  });
+
+  it('allows omitting the `responseModel`', function() {
+    var doc = createAPIDoc({
+      errors: [{
+        code: 422,
+        message: 'Validation',
+      }],
+    });
+    expect(doc.schema).to.be.undefined;
+  });
+
   it('includes custom http status code and override default ' +
     'success code in `responseMessages`', function() {
     var doc = createAPIDoc({
