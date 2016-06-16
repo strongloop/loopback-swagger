@@ -158,7 +158,7 @@ describe('model-helper', function() {
       expect(defs.test.properties.questions).to.have.property('type', 'array');
       expect(defs.test.properties.questions).to.have.property('items').eql({ '$ref': '#/definitions/x-any' });
     });
-    
+
     it('generates custom extentions for swagger', function() {
       var model = {};
       model.definition = {
