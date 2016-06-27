@@ -54,8 +54,28 @@ describe('swagger definition', function() {
       var swaggerResource = createSwaggerObject(app, {
         basePath: '/api-root',
       });
-
       expect(swaggerResource.basePath).to.equal('/api-root');
+    });
+
+    it('has custom config', function() {
+      var swaggerSpec = { customConfig: 'myCustomConfig' };
+      var app = createLoopbackAppWithModel();
+      app.set('swagger', swaggerSpec);
+      var swaggerResource = createSwaggerObject(app);
+      expect(swaggerResource.customConfig).to.eql('myCustomConfig');
+    });
+
+    it('overrides config in sequence', function() {
+      var swaggerSpec = {
+        swagger: 'invalid-swagger-version',
+        host: '127.0.0.1',
+      };
+      var options = { host: 'invalid-host' };
+      var app = createLoopbackAppWithModel();
+      app.set('swagger', swaggerSpec);
+      var swaggerResource = createSwaggerObject(app, options);
+      expect(swaggerResource.swagger).eql('2.0');
+      expect(swaggerResource.host).eql('127.0.0.1');
     });
 
     it('is inferred from app.get("apiRoot")', function() {
