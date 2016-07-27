@@ -3,6 +3,11 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
+// Globalization
+var SG = require('strong-globalize');
+SG.SetRootDir(__dirname);
+var g = SG();
+
 var V2Generator = require('./lib/codegen/generator-v2');
 var V12Generator = require('./lib/codegen/generator-v1.2');
 var generateModels = require('./lib/codegen/json-schema');
@@ -15,7 +20,7 @@ function getGenerator(spec) {
   } else if (spec && spec.swaggerVersion === '1.2') {
     generator = new V12Generator();
   } else {
-    throw new Error('Swagger spec version is not supported');
+    throw new Error(g.f('{{Swagger spec}} version is not supported'));
   }
   return generator;
 }
@@ -60,7 +65,7 @@ exports.generateModels = function(spec, options) {
   } else if (spec && spec.swaggerVersion === '1.2') {
     models = spec.models;
   } else {
-    throw new Error('Swagger spec version is not supported');
+    throw new Error(g.f('{{Swagger spec}} version is not supported'));
   }
   return generateModels(models, options || {});
 };

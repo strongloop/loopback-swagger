@@ -1,0 +1,7 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "{{Swagger spec}} version is not supported",
+  "f56715842719b19ea94d85dd1f024684": "Warning: detected multiple remote methods at the same HTTP endpoint. {{Swagger operation ids}} will NOT be unique.",
+  "887507f75b7a4051e4c604f1f187d7be": "Warning: unknown LDL type {0}, using \"{{any}}\" instead",
+  "ea289bffae13f78fad7794b62395008d": "Route exists with no class: {0}",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: skipping unknown type {0}."
+}
