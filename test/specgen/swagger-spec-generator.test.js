@@ -141,7 +141,7 @@ describe('swagger definition', function() {
       var products = swaggerResource.paths['/Products'];
       var verbs = Object.keys(products);
       verbs.sort();
-      expect(verbs).to.eql(['get', 'post', 'put']);
+      expect(verbs).to.contain('get', 'patch', 'post', 'put');
     });
   });
 
