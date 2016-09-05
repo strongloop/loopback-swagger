@@ -1,3 +1,17 @@
+2016-09-05, Version 2.5.0
+=========================
+
+ * Add `patch` verb in test (Amir Jafarian)
+
+ * Add globalization. (Richard Pringle)
+
+ * Update URLs in CONTRIBUTING.md (#49) (Ryan Graham)
+
+ * Add doc root (jannyHou)
+
+ * Add custom definition to swagger file (jannyHou)
+
+
 2016-05-06, Version 2.4.3
 =========================
 
