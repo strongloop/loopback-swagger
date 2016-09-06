@@ -59,8 +59,38 @@ describe('schema-builder', function() {
     { in: { type: 'user' },
       out: { $ref: '#/definitions/user' }},
     // Anonymous type
-    { in: { type: { foo: 'string', bar: 'number' }},
-      out: { type: 'object' }},
+    { in: {
+      type: {
+        foo: 'string',
+        bar: 'number',
+        quux: {
+          type: {
+            quuux: 'date',
+          },
+        },
+      },
+    },
+    out: {
+      type: 'object',
+      properties: {
+        foo: {
+          type: 'string',
+        },
+        bar: {
+          type: 'number',
+          format: 'double',
+        },
+        quux: {
+          properties: {
+            quuux: {
+              format: 'date',
+              type: 'string',
+            },
+          },
+          type: 'object',
+        },
+      },
+    }},
   ]);
 
   describeTestCases('for extra metadata', [
