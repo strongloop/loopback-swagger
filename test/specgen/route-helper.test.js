@@ -374,6 +374,23 @@ describe('route-helper', function() {
       .to.have.property('schema')
       .eql({ $ref: '#/definitions/User' });
   });
+
+  it('supports `model` property', function() {
+    var doc = createAPIDoc(
+      {
+        accepts: [{
+          arg: 'result',
+          type: 'object',
+          model: 'User',
+          http: { source: 'body' },
+        }],
+      },
+      { name: 'User' });
+    var param = doc.operation.parameters[0];
+    expect(param)
+      .to.have.property('schema')
+      .eql({ $ref: '#/definitions/User' });
+  });
 });
 
 // Easy wrapper around createRoute
