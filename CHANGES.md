@@ -1,3 +1,11 @@
+2016-09-07, Version 2.6.0
+=========================
+
+ * Allow object arguments to provide Model (Miroslav Bajtoš)
+
+ * Expose object types as nested properties (Carl Fürstenberg)
+
+
 2016-09-05, Version 2.5.0
 =========================
 
