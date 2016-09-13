@@ -1,3 +1,11 @@
+2016-09-13, Version 2.7.0
+=========================
+
+ * Allow setting null on error's responseModel (Alex Plescan)
+
+ * Use juggler@3 and loopback@3 for testing (Amir Jafarian)
+
+
 2016-09-07, Version 2.6.0
 =========================
 
