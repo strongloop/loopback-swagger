@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "{{Swagger spec}} sürümü desteklenmiyor",
+  "f56715842719b19ea94d85dd1f024684": "Uyarı: Aynı HTTP uç noktasında birden çok uzak yöntem algılandı. {{Swagger operation ids}} benzersiz OLMAYACAK.",
+  "887507f75b7a4051e4c604f1f187d7be": "Uyarı: LDL tipi {0} bilinmiyor, onun yerine \"{{any}}\" kullanılıyor",
+  "ea289bffae13f78fad7794b62395008d": "Rota var, ancak sınıfı yok: {0}",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: bilinmeyen {0} tipi atlanıyor."
+}
+

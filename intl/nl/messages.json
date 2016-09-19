@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "Versie van {{Swagger spec}} wordt niet ondersteund",
+  "f56715842719b19ea94d85dd1f024684": "Waarschuwing: Meerdere niet-lokale methoden gevonden op hetzelfde HTTP-eindpunt. {{Swagger operation ids}} is NIET uniek.",
+  "887507f75b7a4051e4c604f1f187d7be": "Waarschuwing: onbekend LDL-type {0}, in plaats daarvan wordt \"{{any}}\" gebruikt",
+  "ea289bffae13f78fad7794b62395008d": "Klasse ontbreekt in route: {0}",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: Onbekend type {0} wordt overgeslagen."
+}
+

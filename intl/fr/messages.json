@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "La version {{Swagger spec}} n'est pas prise en charge",
+  "f56715842719b19ea94d85dd1f024684": "Avertissement : plusieurs méthodes distantes détectées sur le même noeud final HTTP. {{Swagger operation ids}} ne seront PAS uniques.",
+  "887507f75b7a4051e4c604f1f187d7be": "Avertissement : type LDL inconnu {0} ; \"{{any}}\" est utilisé à la place",
+  "ea289bffae13f78fad7794b62395008d": "La route existe sans classe : {0}",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}} : le type inconnu {0} est ignoré."
+}
+
