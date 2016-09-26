@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "La versión de {{Swagger spec}} no está soportada",
+  "f56715842719b19ea94d85dd1f024684": "Aviso: han detectado varios métodos remotos en el mismo punto final HTTP. Los {{Swagger operation ids}} NO serán exclusivos.",
+  "887507f75b7a4051e4c604f1f187d7be": "Aviso: tipo LDL desconocido {0}, se utiliza\"{{any}}\" en su lugar",
+  "ea289bffae13f78fad7794b62395008d": "La ruta existe sin clase: {0}",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: se pasa por alto el tipo desconocido {0}."
+}
+

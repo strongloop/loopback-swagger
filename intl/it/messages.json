@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "Versione di {{Swagger spec}} non supportata",
+  "f56715842719b19ea94d85dd1f024684": "Avvertenza: rilevati più metodi remoti nello stesso endpoint HTTP. {{Swagger operation ids}} NON potrà essere univoca.",
+  "887507f75b7a4051e4c604f1f187d7be": "Avvertenza: tipo LDL sconosciuto {0}, viene utilizzato \"{{any}}\"",
+  "ea289bffae13f78fad7794b62395008d": "Presente instradamento senza classe: {0}",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: il tipo sconosciuto viene ignorato {0}."
+}
+
