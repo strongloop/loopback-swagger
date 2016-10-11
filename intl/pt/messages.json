@@ -1,6 +1,6 @@
 {
   "47a65938fb7d8999530eb834c7f88bfe": "Versão de {{Swagger spec}} não é suportada",
-  "f56715842719b19ea94d85dd1f024684": "Aviso: detectados múltiplos métodos remotos no mesmo endpoint HTTP. {{Swagger operation ids}} NÃO será exclusivo.",
+  "f56715842719b19ea94d85dd1f024684": "Aviso: detectados múltiplos métodos remotos no mesmo terminal HTTP. {{Swagger operation ids}} NÃO será exclusivo.",
   "887507f75b7a4051e4c604f1f187d7be": "Aviso: LDL tipo {0} desconhecido, usando \"{{any}}\" no lugar",
   "ea289bffae13f78fad7794b62395008d": "Rota existe sem classe: {0}",
   "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: ignorando tipo desconhecido {0}."
