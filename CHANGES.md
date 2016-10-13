@@ -1,3 +1,19 @@
+2016-10-13, Version 2.8.0
+=========================
+
+ * Update pt translation file (Candy)
+
+ * Update ja translation file (Candy)
+
+ * Update translation files - round#2 (Candy)
+
+ * Add translated files (gunjpan)
+
+ * Update deps to loopback 3.0.0 RC (Miroslav Bajtoš)
+
+ * Remove juggler as a dependency (Amir Jafarian)
+
+
 2016-09-13, Version 2.7.0
 =========================
 
