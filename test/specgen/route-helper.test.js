@@ -185,6 +185,15 @@ describe('route-helper', function() {
       var result = f({ description: ['1', '2', '3'] });
       expect(result.description).to.eql('1\n2\n3');
     });
+
+    it('coerces `form` to `formData` when checking http settings', function() {
+      var f = routeHelper.acceptToParameter(
+        { verb: 'put', path: 'path' },
+        A_CLASS_DEF,
+        new TypeRegistry());
+      var result = f({ http: { source: 'form' }});
+      expect(result.in).to.equal('formData');
+    });
   });
 
   describe('#routeToPathEntry', function() {
