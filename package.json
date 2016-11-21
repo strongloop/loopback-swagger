@@ -1,6 +1,9 @@
 {
   "name": "loopback-swagger",
   "version": "2.8.0",
+  "publishConfig": {
+    "tag": "lts"
+  },
   "description": "Integration between LoopBack and Swagger API specs",
   "main": "index.js",
   "scripts": {
@@ -27,7 +30,7 @@
     "chai": "^3.2.0",
     "eslint": "^2.7.0",
     "eslint-config-loopback": "^1.0.0",
-    "loopback": "^3.0.0",
+    "loopback": "^2.36.0",
     "mocha": "^2.3.0"
   },
   "license": "MIT",
