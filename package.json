@@ -1,7 +1,10 @@
 {
   "name": "loopback-swagger",
-  "version": "2.8.0",
+  "version": "3.0.0-alpha.1",
   "description": "Integration between LoopBack and Swagger API specs",
+  "engines": {
+    "node": ">=4"
+  },
   "main": "index.js",
   "scripts": {
     "test": "mocha",
