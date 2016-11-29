@@ -17,7 +17,8 @@ describe('json schema converter', function() {
     expect(models).have.property('newPet');
     expect(models).have.property('errorModel');
     expect(models.pet.properties.tags.type).to.eql(['string']);
-    expect(models.petGroup.properties.pets.type).to.eql(['pet']);
+    expect(models.petGroup.relations.pets.type).to.eql('hasMany');
+    expect(models.petGroup.relations.pets.model).to.eql('pet');
     expect(models.newPet).have.property('base', 'pet');
     expect(models.newPet.properties).have.property('kind');
   });
