@@ -369,6 +369,21 @@ describe('swagger definition', function() {
     });
   });
 
+  describe('prototype.patchAttributes', function() {
+    it('has parameters in the correct order', function() {
+      var app = createLoopbackAppWithModel();
+      var swaggerResource = createSwaggerObject(app);
+      var operation = getAllOperations(swaggerResource).
+        find(_.matchesProperty('operationId', 'Product.prototype.patchAttributes'));
+
+      var parameters = _(operation.parameters)
+        .map(_.property('name'))
+        .value();
+
+      expect(parameters).eql(['id', 'data']);
+    });
+  });
+
   describe('paths node', function() {
     it('has unique operation ids', function() {
       var app = createLoopbackAppWithModel();
@@ -382,12 +397,7 @@ describe('swagger definition', function() {
 
       var swaggerResource = createSwaggerObject(app);
       // extract swaggerResource.{path}.{verb}.operationId
-      var ids = _(swaggerResource.paths)
-        .values()
-        .map(_.values)
-        .flatten()
-        .map(_.property('operationId'))
-        .value();
+      var ids = getAllOperations(swaggerResource).map(_.property('operationId')).value();
 
       var conflicts = _(ids).countBy().reduce(function(result, value, key) {
         return value > 1 ? result.concat([key]) : result;
@@ -440,5 +450,14 @@ describe('swagger definition', function() {
   function urlJoin() {
     var args = Array.prototype.slice.call(arguments);
     return args.join('/').replace(/\/+/g, '/');
+  }
+
+  // Returns a lodash wrapper
+  function getAllOperations(swagger) {
+    // flatten swaggerResource.paths.{path}.{verb} into a single array
+    return _(swagger.paths)
+      .values()
+      .map(_.values)
+      .flatten();
   }
 });
