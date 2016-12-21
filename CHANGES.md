@@ -1,3 +1,23 @@
+2016-12-21, Version 3.0.0
+=========================
+
+ * fix: package.json to reduce vulnerabilities (Ryan Graham)
+
+ * Update paid support URL (Siddhi Pai)
+
+ * Adjust route parameters sequence (Tao Yuan)
+
+ * Start 3.x + drop support for Node v0.10/v0.12 (siddhipai)
+
+ * Drop support for Node v0.10 and v0.12 (Siddhi Pai)
+
+ * Start the development of the next major version (Siddhi Pai)
+
+ * Coerce form to formData in accepts.http.source (Simon Ho)
+
+ * Fix date output format to "date-time" (Stefan B)
+
+
 2016-10-13, Version 2.8.0
 =========================
 
