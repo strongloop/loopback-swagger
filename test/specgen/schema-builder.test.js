@@ -108,6 +108,18 @@ describe('schema-builder', function() {
       out: { type: 'string', maxLength: 10 }},
     { in: { type: String, length: null },
       out: { type: 'string' }},
+    { in: { type: String, default: 'default-value' },
+      out: { type: 'string', default: 'default-value' }},
+    { in: { type: String, default: null },
+      out: { type: 'string' }},
+    { in: { type: String, default: { aaa: 'default-key-val' }},
+      out: { type: 'string', default: { aaa: 'default-key-val' }}},
+    { in: { type: String,
+            default: {
+              aaa: 'default-key-val',
+              bbb: null,
+              ccc: { ddd: 'val', eee: null }}},
+      out: { type: 'string', default: { aaa: 'default-key-val', ccc: { ddd: 'val' }}}},
   ]);
 
   describeTestCases('for built-in LoopBack types', [
