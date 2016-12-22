@@ -1,3 +1,9 @@
+2016-12-22, Version 3.0.1
+=========================
+
+ * Omit null default values from schema (Heath Morrison)
+
+
 2016-12-21, Version 3.0.0
 =========================
 
