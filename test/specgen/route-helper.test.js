@@ -13,20 +13,20 @@ var loopback = require('loopback');
 
 describe('route-helper', function() {
   it('returns "object" when a route has multiple return values', function() {
-    var TestModel = loopback.createModel('TestModel', { street: String });
+    var TestModel = loopback.createModel('TestModel', {street: String});
     var entry = createAPIDoc({
       returns: [
-        { arg: 'max', type: 'number' },
-        { arg: 'min', type: 'number' },
-        { name: 'avg', type: 'number' },
-        { name: 'str', type: String },
-        { name: 'strArray', type: [String] },
-        { name: 'testModel', type: TestModel },
-        { name: 'testModelStr', type: 'TestModel' },
-        { name: 'testModelArray', type: [TestModel] },
-        { name: 'testModelArrayArray', type: [[TestModel]] },
-        { name: 'unknownModel', type: 'UnknownModel' },
-        { name: 'requiredStr', type: String, required: true },
+        {arg: 'max', type: 'number'},
+        {arg: 'min', type: 'number'},
+        {name: 'avg', type: 'number'},
+        {name: 'str', type: String},
+        {name: 'strArray', type: [String]},
+        {name: 'testModel', type: TestModel},
+        {name: 'testModelStr', type: 'TestModel'},
+        {name: 'testModelArray', type: [TestModel]},
+        {name: 'testModelArrayArray', type: [[TestModel]]},
+        {name: 'unknownModel', type: 'UnknownModel'},
+        {name: 'requiredStr', type: String, required: true},
       ],
     });
     var responseMessage = getResponseMessage(entry.operation);
@@ -35,10 +35,10 @@ describe('route-helper', function() {
       .to.have.property('schema').eql({
         type: 'object',
         properties: {
-          max: { type: 'number', format: 'double' },
-          min: { type: 'number', format: 'double' },
-          avg: { type: 'number', format: 'double' },
-          str: { type: 'string' },
+          max: {type: 'number', format: 'double'},
+          min: {type: 'number', format: 'double'},
+          avg: {type: 'number', format: 'double'},
+          str: {type: 'string'},
           strArray: {
             items: {
               type: 'string',
@@ -69,7 +69,7 @@ describe('route-helper', function() {
           unknownModel: {
             type: 'object', // unknown model is converted to plain object
           },
-          requiredStr: { type: 'string' },
+          requiredStr: {type: 'string'},
         },
         required: [
           'requiredStr',
@@ -78,23 +78,22 @@ describe('route-helper', function() {
   });
 
   it('does not produce required array if no required property is defined', function() {
-    var TestModel = loopback.createModel('TestModel', { street: String });
+    var TestModel = loopback.createModel('TestModel', {street: String});
     var entry = createAPIDoc({
       returns: [
-        { arg: 'max', type: 'number' },
-        { arg: 'min', type: 'number' },
+        {arg: 'max', type: 'number'},
+        {arg: 'min', type: 'number'},
       ],
     });
     var responseMessage = getResponseMessage(entry.operation);
     expect(responseMessage.schema).to.not.have.property('required');
   });
 
-
   it('converts { type: ReadableStream\' } to { schema: { type: \'file\' } }', function() {
-    var TestModel = loopback.createModel('TestModel', { street: String });
+    var TestModel = loopback.createModel('TestModel', {street: String});
     var entry = createAPIDoc({
       returns: [
-        { name: 'changes', type: 'ReadableStream' },
+        {name: 'changes', type: 'ReadableStream'},
       ],
     });
     var responseMessage = getResponseMessage(entry.operation);
@@ -107,7 +106,7 @@ describe('route-helper', function() {
   it('converts path params when they exist in the route name', function() {
     var entry = createAPIDoc({
       accepts: [
-        { arg: 'id', type: 'string' },
+        {arg: 'id', type: 'string'},
       ],
       path: '/test/:id',
     });
@@ -121,7 +120,7 @@ describe('route-helper', function() {
   xit('won\'t convert path params when they don\'t exist in the route name', function() {
     var doc = createAPIDoc({
       accepts: [
-        { arg: 'id', type: 'string' },
+        {arg: 'id', type: 'string'},
       ],
       path: '/test/:identifier',
     });
@@ -132,7 +131,7 @@ describe('route-helper', function() {
   it('correctly coerces param types', function() {
     var doc = createAPIDoc({
       accepts: [
-        { arg: 'binaryData', type: 'buffer' },
+        {arg: 'binaryData', type: 'buffer'},
       ],
     });
     var paramDoc = doc.operation.parameters[0];
@@ -144,7 +143,7 @@ describe('route-helper', function() {
   it('correctly converts return types (arrays)', function() {
     var doc = createAPIDoc({
       returns: [
-        { arg: 'data', type: ['customType'], root: true },
+        {arg: 'data', type: ['customType'], root: true},
       ],
     });
     var opDoc = doc.operation;
@@ -152,13 +151,13 @@ describe('route-helper', function() {
     var responseSchema = getResponseMessage(opDoc).schema;
     expect(responseSchema).to.have.property('type', 'array');
     expect(responseSchema).to.have.property('items')
-      .eql({ $ref: '#/definitions/customType' });
+      .eql({$ref: '#/definitions/customType'});
   });
 
   it('correctly converts return types (format)', function() {
     var doc = createAPIDoc({
       returns: [
-        { arg: 'data', type: 'buffer', root: true },
+        {arg: 'data', type: 'buffer', root: true},
       ],
     });
 
@@ -175,23 +174,23 @@ describe('route-helper', function() {
   });
 
   describe('#acceptToParameter', function() {
-    var A_CLASS_DEF = { name: 'TestModelName' };
+    var A_CLASS_DEF = {name: 'TestModelName'};
 
     it('returns fn converting description from array to string', function() {
       var f = routeHelper.acceptToParameter(
-        { verb: 'get', path: 'path' },
+        {verb: 'get', path: 'path'},
         A_CLASS_DEF,
         new TypeRegistry());
-      var result = f({ description: ['1', '2', '3'] });
+      var result = f({description: ['1', '2', '3']});
       expect(result.description).to.eql('1\n2\n3');
     });
 
     it('coerces `form` to `formData` when checking http settings', function() {
       var f = routeHelper.acceptToParameter(
-        { verb: 'put', path: 'path' },
+        {verb: 'put', path: 'path'},
         A_CLASS_DEF,
         new TypeRegistry());
-      var result = f({ http: { source: 'form' }});
+      var result = f({http: {source: 'form'}});
       expect(result.in).to.equal('formData');
     });
   });
@@ -241,7 +240,7 @@ describe('route-helper', function() {
 
   it('joins array description/summary of an input arg', function() {
     var doc = createAPIDoc({
-      accepts: [{ name: 'arg', description: ['line1', 'line2'] }],
+      accepts: [{name: 'arg', description: ['line1', 'line2']}],
     });
     expect(doc.operation.parameters[0].description).to.equal('line1\nline2');
   });
@@ -249,7 +248,7 @@ describe('route-helper', function() {
   it('correctly does not include context params', function() {
     var doc = createAPIDoc({
       accepts: [
-        { arg: 'ctx', http: { source: 'context' }},
+        {arg: 'ctx', http: {source: 'context'}},
       ],
       path: '/test',
     });
@@ -260,7 +259,7 @@ describe('route-helper', function() {
   it('correctly does not include request params', function() {
     var doc = createAPIDoc({
       accepts: [
-        { arg: 'req', http: { source: 'req' }},
+        {arg: 'req', http: {source: 'req'}},
       ],
       path: '/test',
     });
@@ -271,7 +270,7 @@ describe('route-helper', function() {
   it('correctly does not include response params', function() {
     var doc = createAPIDoc({
       accepts: [
-        { arg: 'res', http: { source: 'res' }},
+        {arg: 'res', http: {source: 'res'}},
       ],
       path: '/test',
     });
@@ -281,7 +280,7 @@ describe('route-helper', function() {
 
   it('preserves `enum` accepts arg metadata', function() {
     var doc = createAPIDoc({
-      accepts: [{ name: 'arg', type: 'number', enum: [1, 2, 3] }],
+      accepts: [{name: 'arg', type: 'number', enum: [1, 2, 3]}],
     });
     expect(doc.operation.parameters[0])
       .to.have.property('enum').eql([1, 2, 3]);
@@ -289,12 +288,12 @@ describe('route-helper', function() {
 
   it('includes the default response message with code 200', function() {
     var doc = createAPIDoc({
-      returns: [{ name: 'result', type: 'object', root: true }],
+      returns: [{name: 'result', type: 'object', root: true}],
     });
     expect(doc.operation.responses).to.eql({
       200: {
         description: 'Request was successful',
-        schema: { type: 'object' },
+        schema: {type: 'object'},
       },
     });
   });
@@ -321,7 +320,7 @@ describe('route-helper', function() {
     });
     expect(doc.operation.responses).to.have.property(422).eql({
       description: 'Validation failed',
-      schema: { $ref: '#/definitions/ValidationError' },
+      schema: {$ref: '#/definitions/ValidationError'},
     });
   });
 
@@ -333,7 +332,7 @@ describe('route-helper', function() {
         responseModel: null,
       }],
     });
-    expect(doc.schema).to.be.undefined;
+    expect(doc.schema).to.equal(undefined);
   });
 
   it('allows omitting the `responseModel`', function() {
@@ -343,7 +342,7 @@ describe('route-helper', function() {
         message: 'Validation',
       }],
     });
-    expect(doc.schema).to.be.undefined;
+    expect(doc.schema).to.equal(undefined);
   });
 
   it('includes custom http status code and override default ' +
@@ -373,20 +372,20 @@ describe('route-helper', function() {
   });
 
   it('route operationId DOES include model name.', function() {
-    var doc = createAPIDoc({ method: 'User.login' });
+    var doc = createAPIDoc({method: 'User.login'});
     expect(doc.operation.operationId).to.equal('User.login');
   });
 
   it('adds class name to `tags`', function() {
     var doc = createAPIDoc(
-      { method: 'User.login' },
-      { name: 'User' });
+      {method: 'User.login'},
+      {name: 'User'});
     expect(doc.operation.tags).to.contain('User');
   });
 
   it('converts non-primitive param types to JSON strings', function() {
     var doc = createAPIDoc({
-      accepts: [{ arg: 'filter', type: 'object', http: { source: 'query' }}],
+      accepts: [{arg: 'filter', type: 'object', http: {source: 'query'}}],
     });
     var param = doc.operation.parameters[0];
     expect(param).to.have.property('type', 'string');
@@ -396,13 +395,13 @@ describe('route-helper', function() {
   it('converts single "data" body arg to Model type', function() {
     var doc = createAPIDoc(
       {
-        accepts: [{ arg: 'data', type: 'object', http: { source: 'body' }}],
+        accepts: [{arg: 'data', type: 'object', http: {source: 'body'}}],
       },
-      { name: 'User' });
+      {name: 'User'});
     var param = doc.operation.parameters[0];
     expect(param)
       .to.have.property('schema')
-      .eql({ $ref: '#/definitions/User' });
+      .eql({$ref: '#/definitions/User'});
   });
 
   it('supports `model` property', function() {
@@ -412,14 +411,14 @@ describe('route-helper', function() {
           arg: 'result',
           type: 'object',
           model: 'User',
-          http: { source: 'body' },
+          http: {source: 'body'},
         }],
       },
-      { name: 'User' });
+      {name: 'User'});
     var param = doc.operation.parameters[0];
     expect(param)
       .to.have.property('schema')
-      .eql({ $ref: '#/definitions/User' });
+      .eql({$ref: '#/definitions/User'});
   });
 });
 
