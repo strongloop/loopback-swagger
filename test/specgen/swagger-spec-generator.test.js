@@ -58,7 +58,7 @@ describe('swagger definition', function() {
     });
 
     it('has custom config', function() {
-      var swaggerSpec = { customConfig: 'myCustomConfig' };
+      var swaggerSpec = {customConfig: 'myCustomConfig'};
       var app = createLoopbackAppWithModel();
       app.set('swagger', swaggerSpec);
       var swaggerResource = createSwaggerObject(app);
@@ -70,7 +70,7 @@ describe('swagger definition', function() {
         swagger: 'invalid-swagger-version',
         host: '127.0.0.1',
       };
-      var options = { host: 'invalid-host' };
+      var options = {host: 'invalid-host'};
       var app = createLoopbackAppWithModel();
       app.set('swagger', swaggerSpec);
       var swaggerResource = createSwaggerObject(app, options);
@@ -128,7 +128,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app);
       expect(swaggerResource.tags).to.eql([
-        { name: 'Product', description: 'a-description\nline2' },
+        {name: 'Product', description: 'a-description\nline2'},
       ]);
     });
   });
@@ -165,7 +165,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       givenPrivateAppModel(app, 'Image');
       givenSharedMethod(app.models.Product, 'setImage', {
-        accepts: { name: 'image', type: 'Image' },
+        accepts: {name: 'image', type: 'Image'},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -176,7 +176,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       givenPrivateAppModel(app, 'Image');
       givenSharedMethod(app.models.Product, 'getImage', {
-        returns: { name: 'image', type: 'Image', root: true },
+        returns: {name: 'image', type: 'Image', root: true},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -187,7 +187,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       loopback.createModel('Image');
       givenSharedMethod(app.models.Product, 'setImage', {
-        accepts: { name: 'image', type: 'Image' },
+        accepts: {name: 'image', type: 'Image'},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -214,7 +214,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       givenWarehouseWithAddressModels(app);
 
-      app.models.Product.defineProperty('location', { type: 'Warehouse' });
+      app.models.Product.defineProperty('location', {type: 'Warehouse'});
 
       var swaggerResource = createSwaggerObject(app);
       expect(Object.keys(swaggerResource.definitions))
@@ -225,7 +225,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       givenWarehouseWithAddressModels(app);
 
-      app.models.Product.defineProperty('location', { type: ['Warehouse'] });
+      app.models.Product.defineProperty('location', {type: ['Warehouse']});
 
       var swaggerResource = createSwaggerObject(app);
       expect(Object.keys(swaggerResource.definitions))
@@ -249,7 +249,7 @@ describe('swagger definition', function() {
       givenPrivateAppModel(app, 'ProductLocations');
 
       app.models.Product.hasMany(app.models.Warehouse,
-        { through: app.models.ProductLocations });
+        {through: app.models.ProductLocations});
 
       var swaggerResource = createSwaggerObject(app);
       expect(Object.keys(swaggerResource.definitions))
@@ -261,7 +261,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        accepts: { arg: 'w', type: 'Warehouse' },
+        accepts: {arg: 'w', type: 'Warehouse'},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -274,7 +274,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        accepts: { arg: 'w', type: ['Warehouse'] },
+        accepts: {arg: 'w', type: ['Warehouse']},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -287,7 +287,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        returns: { arg: 'w', type: 'Warehouse', root: true },
+        returns: {arg: 'w', type: 'Warehouse', root: true},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -300,7 +300,7 @@ describe('swagger definition', function() {
       givenWarehouseWithAddressModels(app);
 
       givenSharedMethod(app.models.Product, 'aMethod', {
-        returns: { arg: 'w', type: ['Warehouse'], root: true },
+        returns: {arg: 'w', type: ['Warehouse'], root: true},
       });
 
       var swaggerResource = createSwaggerObject(app);
@@ -326,10 +326,10 @@ describe('swagger definition', function() {
     });
 
     it('includes hidden models referenced by public models', function() {
-      var app = loopback({ localRegistry: true, loadBuiltinModels: true });
-      app.dataSource('db', { connector: 'memory' });
-      app.model(app.registry.AccessToken, { public: false, dataSource: 'db' });
-      app.model(app.registry.User, { public: true, dataSource: 'db' });
+      var app = loopback({localRegistry: true, loadBuiltinModels: true});
+      app.dataSource('db', {connector: 'memory'});
+      app.model(app.registry.AccessToken, {public: false, dataSource: 'db'});
+      app.model(app.registry.User, {public: true, dataSource: 'db'});
 
       var swaggerResource = createSwaggerObject(app);
 
@@ -338,10 +338,10 @@ describe('swagger definition', function() {
     });
 
     it('excludes hidden models referenced by hidden models only', function() {
-      var app = loopback({ localRegistry: true, loadBuiltinModels: true });
-      app.dataSource('db', { connector: 'memory' });
-      app.model(app.registry.RoleMapping, { public: false, dataSource: 'db' });
-      app.model(app.registry.Role, { public: false, dataSource: 'db' });
+      var app = loopback({localRegistry: true, loadBuiltinModels: true});
+      app.dataSource('db', {connector: 'memory'});
+      app.model(app.registry.RoleMapping, {public: false, dataSource: 'db'});
+      app.model(app.registry.Role, {public: false, dataSource: 'db'});
 
       var swaggerResource = createSwaggerObject(app);
 
@@ -350,15 +350,15 @@ describe('swagger definition', function() {
     });
 
     it('excludes definitions referenced by hidden models', function() {
-      var app = loopback({ localRegistry: true });
+      var app = loopback({localRegistry: true});
       var MyModel = app.registry.createModel({
         name: 'MyModel',
         base: 'Model',
         properties: {
-          data: { type: 'any' },
+          data: {type: 'any'},
         },
       });
-      app.model(MyModel, { public: false, dataSource: null });
+      app.model(MyModel, {public: false, dataSource: null});
 
       var swaggerResource = createSwaggerObject(app);
 
@@ -390,8 +390,8 @@ describe('swagger definition', function() {
       app.models.Product.remoteMethod('multipath', {
         isStatic: true,
         http: [
-          { verb: 'get', path: '/multipath' },
-          { verb: 'post', path: '/multipath' },
+          {verb: 'get', path: '/multipath'},
+          {verb: 'post', path: '/multipath'},
         ],
       });
 
@@ -412,14 +412,14 @@ describe('swagger definition', function() {
   function createLoopbackAppWithModel(apiRoot) {
     var app = loopback();
 
-    app.dataSource('db', { connector: 'memory' });
+    app.dataSource('db', {connector: 'memory'});
 
     var Product = loopback.createModel('Product', {
-      foo: { type: 'string', required: true },
+      foo: {type: 'string', required: true},
       bar: 'string',
-      aNum: { type: 'number', min: 1, max: 10, required: true, default: 5 },
-    }, { description: ['a-description', 'line2']  });
-    app.model(Product, { dataSource: 'db' });
+      aNum: {type: 'number', min: 1, max: 10, required: true, default: 5},
+    }, {description: ['a-description', 'line2']});
+    app.model(Product, {dataSource: 'db'});
 
     // Simulate a restApiRoot set in config
     app.set('restApiRoot', apiRoot || '/api');
@@ -435,13 +435,13 @@ describe('swagger definition', function() {
 
   function givenPrivateAppModel(app, name, properties) {
     var model = loopback.createModel(name, properties);
-    app.model(model, { dataSource: 'db', public: false });
+    app.model(model, {dataSource: 'db', public: false});
   }
 
   function givenWarehouseWithAddressModels(app) {
     givenPrivateAppModel(app, 'Address');
     givenPrivateAppModel(app, 'Warehouse', {
-      shippingAddress: { type: 'Address' },
+      shippingAddress: {type: 'Address'},
     });
   }
 

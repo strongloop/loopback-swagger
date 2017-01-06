@@ -3,6 +3,8 @@
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
 
+'use strict';
+
 var expect = require('chai').expect;
 var V2Generator = require('../../lib/codegen/generator-v2');
 
@@ -13,13 +15,13 @@ var generator = new V2Generator();
 describe('Swagger spec v2 generator', function() {
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(petStoreV2Spec,
-      { modelName: 'Store' });
-    expect(code).to.be.string;
+      {modelName: 'Store'});
+    expect(code).to.be.a('string');
   });
 
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(pet2,
-      { modelName: 'Pet' });
+      {modelName: 'Pet'});
     expect(code).contain('Pet.PetFindPets = function(tags, limit, callback)');
     expect(code).contain('Pet.remoteMethod(\'PetFindPets\'');
     expect(code).contain('Pet.findPetByIdId = function(id, callback)');

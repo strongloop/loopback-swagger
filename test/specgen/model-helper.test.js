@@ -22,32 +22,32 @@ describe('model-helper', function() {
     });
 
     it('should include nesting models', function() {
-      var Model2 = loopback.createModel('Model2', { street: String });
+      var Model2 = loopback.createModel('Model2', {street: String});
       var Model1 = loopback.createModel('Model1', {
         str: String, // 'string'
         address: Model2,
-      }, { models: { Model2: Model2 }});
+      }, {models: {Model2: Model2}});
       var defs = getDefinitionsForModel(Model1);
       expect(defs).has.property('Model1');
       expect(defs).has.property('Model2');
     });
 
     it('should include used models', function() {
-      var Model4 = loopback.createModel('Model4', { street: String });
+      var Model4 = loopback.createModel('Model4', {street: String});
       var Model3 = loopback.createModel('Model3', {
         str: String, // 'string'
-      }, { models: { model4: 'Model4' }});
+      }, {models: {model4: 'Model4'}});
       var defs = getDefinitionsForModel(Model3);
       expect(defs).has.property('Model3');
       expect(defs).has.property('Model4');
     });
 
     it('should include nesting models in array', function() {
-      var Model6 = loopback.createModel('Model6', { street: String });
+      var Model6 = loopback.createModel('Model6', {street: String});
       var Model5 = loopback.createModel('Model5', {
         str: String, // 'string'
         addresses: [Model6],
-      }, { models: { Model6: Model6 }});
+      }, {models: {Model6: Model6}});
       var defs = getDefinitionsForModel(Model5);
       expect(defs).has.property('Model5');
       expect(defs).has.property('Model6');
@@ -56,7 +56,7 @@ describe('model-helper', function() {
     // https://github.com/strongloop/loopback-explorer/issues/49
     it('should work if Array class is extended and no related models are found',
       function() {
-        var Model7 = loopback.createModel('Model7', { street: String });
+        var Model7 = loopback.createModel('Model7', {street: String});
         Array.prototype.customFunc = function() {
         };
         var defs = getDefinitionsForModel(Model7);
@@ -156,7 +156,7 @@ describe('model-helper', function() {
       };
       var defs = getDefinitionsForModel(model);
       expect(defs.test.properties.questions).to.have.property('type', 'array');
-      expect(defs.test.properties.questions).to.have.property('items').eql({ '$ref': '#/definitions/x-any' });
+      expect(defs.test.properties.questions).to.have.property('items').eql({'$ref': '#/definitions/x-any'});
     });
 
     it('generates custom extentions for swagger', function() {
@@ -188,7 +188,7 @@ function createModelCtor(properties, modelOptions) {
   Object.keys(properties).forEach(function(name) {
     var type = properties[name];
     if (typeof type !== 'object' || Array.isArray(type))
-      properties[name] = { type: type };
+      properties[name] = {type: type};
   });
 
   var definition = {
@@ -207,7 +207,7 @@ function createModelCtor(properties, modelOptions) {
 
 function buildSwaggerModelsWithRelations(model) {
   Object.keys(model).forEach(function(name) {
-    model[name] = { type: model[name] };
+    model[name] = {type: model[name]};
   });
   // Mock up the related model
   var relatedModel = {
