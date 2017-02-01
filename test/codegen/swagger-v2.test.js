@@ -10,31 +10,56 @@ var V2Generator = require('../../lib/codegen/generator-v2');
 
 var petStoreV2Spec = require('../../example/pet-store-2.0.json');
 var pet2 = require('./pet-expanded.json');
+var note = require('./note.json');
 var generator = new V2Generator();
 
 describe('Swagger spec v2 generator', function() {
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(petStoreV2Spec,
       {modelName: 'Store'});
-    expect(code).to.be.a('string');
+    expect(code.store).to.be.a('string');
+  });
+
+  it('parse operations', function() {
+    var operations = generator.getOperations(pet2);
+    expect(operations['/pet-app/pets'].get.returns).to.eql(
+      [{
+        description: 'pet response',
+        type: ['pet'],
+        arg: 'data',
+        root: true,
+      }]
+    );
   });
 
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(pet2,
-      {modelName: 'Pet'});
-    expect(code).contain('Pet.PetFindPets = function(tags, limit, callback)');
-    expect(code).contain('Pet.remoteMethod(\'PetFindPets\'');
+      {modelName: 'Pet'}).Pet;
+    expect(code).contain('Pet.findPets = function(tags, limit, callback)');
+    expect(code).contain('Pet.remoteMethod(\'findPets\'');
     expect(code).contain('Pet.findPetByIdId = function(id, callback)');
     expect(code).contain('Pet.remoteMethod(\'findPetByIdId\'');
     expect(code).contain('Pet.deletePet = function(id, callback)');
     expect(code).contain('Pet.remoteMethod(\'deletePet\'');
+    expect(code).contain('Pet.createPet = function(pet, callback)');
+    expect(code).contain('Pet.remoteMethod(\'createPet\'');
+    expect(code).contain('type: [ \'pet\' ],');
+    expect(code).contain(
+      'Pet.find({limit: limit, where: {inq: tags}}, callback);');
+    expect(code).contain('Pet.create(pet, callback);');
+    expect(code).contain('Pet.findById(id, callback);');
+  });
+
+  it('generates remote methods with tags', function() {
+    var code = generator.generateRemoteMethods(note, {});
+    expect(Object.keys(code)).eql(['User', 'Note']);
   });
 
   it('transform operations', function() {
     var operations = generator.getOperations(petStoreV2Spec);
-    expect(operations).to.have.property('/user/createWithList');
-    expect(operations['/user/createWithList']).to.have.property('post');
-    var op = operations['/user/createWithList']['post'];
+    expect(operations).to.have.property('/createWithList');
+    expect(operations['/createWithList']).to.have.property('post');
+    var op = operations['/createWithList']['post'];
     expect(op.operationId).to.eql('createUsersWithListInput');
   });
 });
