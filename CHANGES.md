@@ -1,3 +1,15 @@
+2017-02-01, Version 4.0.0
+=========================
+
+ * Bump version to 4.0.0 (Raymond Feng)
+
+ * Remove .npmignore (Raymond Feng)
+
+ * Enhance Swagger to LoopBack mapping for code gen (Raymond Feng)
+
+ * Upgrade eslint-config to 7.x, eslint to 3.x (Miroslav Bajtoš)
+
+
 2016-12-22, Version 3.0.1
 =========================
 
