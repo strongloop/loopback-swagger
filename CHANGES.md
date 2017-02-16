@@ -1,3 +1,19 @@
+2017-02-16, Version 2.9.0
+=========================
+
+ * fix: package.json to reduce vulnerabilities (Ryan Graham)
+
+ * Revert loopback 2.x (siddhipai)
+
+ * Revert dev-dependency on loopback to 2.x (Siddhi Pai)
+
+ * Set publish tag to "lts" (Siddhi Pai)
+
+ * Coerce form to formData in accepts.http.source (Simon Ho)
+
+ * Fix date output format to "date-time" (Stefan B)
+
+
 2016-10-13, Version 2.8.0
 =========================
 
