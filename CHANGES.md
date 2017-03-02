@@ -1,3 +1,13 @@
+2017-03-02, Version 4.0.1
+=========================
+
+ * Use a default model is added if no tags found (Raymond Feng)
+
+ * Replicate new issue_template from loopback (Siddhi Pai)
+
+ * Replicate issue_template from loopback repo (Siddhi Pai)
+
+
 2017-02-01, Version 4.0.0
 =========================
 
