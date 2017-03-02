@@ -10,6 +10,7 @@ var V2Generator = require('../../lib/codegen/generator-v2');
 
 var petStoreV2Spec = require('../../example/pet-store-2.0.json');
 var pet2 = require('./pet-expanded.json');
+var pet3 = require('./pet-without-tags.json');
 var note = require('./note.json');
 var generator = new V2Generator();
 
@@ -18,6 +19,15 @@ describe('Swagger spec v2 generator', function() {
     var code = generator.generateRemoteMethods(petStoreV2Spec,
       {modelName: 'Store'});
     expect(code.store).to.be.a('string');
+  });
+
+  it('generates remote methods without tags', function() {
+    generator.mapTagsToModels(pet3);
+    var models = require('../../index').generateModels(pet3);
+    expect(models.SwaggerModel).to.be.a('object');
+    var code = generator.generateRemoteMethods(pet3);
+    expect(code.SwaggerModel).to.be.a('string');
+    expect(Object.keys(code)).to.eql(['SwaggerModel']);
   });
 
   it('parse operations', function() {
