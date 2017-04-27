@@ -1,3 +1,11 @@
+2017-04-27, Version 4.0.3
+=========================
+
+ * type-registry: add DateString type (Kevin Delisle)
+
+ * Travis CI config (Kevin Delisle)
+
+
 2017-03-02, Version 4.0.2
 =========================
 
