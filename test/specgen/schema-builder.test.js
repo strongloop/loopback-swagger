@@ -135,6 +135,12 @@ describe('schema-builder', function() {
       out: {$ref: '#/definitions/GeoPoint', description: '{lng: 10, lat: 20}'}},
     {in: {type: 'GEOPOINT', doc: '{lng: 10, lat: 20}'},
       out: {$ref: '#/definitions/GeoPoint', description: '{lng: 10, lat: 20}'}},
+    {in: {type: 'DateString'},
+      out: {$ref: '#/definitions/DateString'}},
+    {in: {type: 'datestring'},
+      out: {$ref: '#/definitions/DateString'}},
+    {in: {type: 'DATESTRING'},
+      out: {$ref: '#/definitions/DateString'}},
   ]);
 
   function describeTestCases(name, testCases) {
