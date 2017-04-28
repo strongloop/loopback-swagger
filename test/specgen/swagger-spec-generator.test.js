@@ -368,6 +368,25 @@ describe('swagger definition', function() {
         .to.have.length(0);
     });
   });
+  
+  describe('prototype.patchAttributes', function() {
+    it('has parameters in the correct order', function() {
+      var app = createLoopbackAppWithModel();
+      var swaggerResource = createSwaggerObject(app);
+      var operation = _(swaggerResource.paths)
+        .values()
+        .map(_.values)
+        .flatten()
+        .find(_.matchesProperty('operationId',
+          'Product.prototype.patchAttributes'));
+
+      var parameters = _(operation.parameters)
+        .map(_.property('name'))
+        .value();
+
+      expect(parameters).eql(['id', 'data']);
+    });
+  });
 
   describe('prototype.patchAttributes', function() {
     it('has parameters in the correct order', function() {
