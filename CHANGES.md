@@ -1,3 +1,13 @@
+2017-05-02, Version 3.0.2
+=========================
+
+ * type-registry: add DateString type (Kevin Delisle)
+
+ * Travis CI config (Kevin Delisle)
+
+ * Upgrade eslint-config to 7.x, eslint to 3.x (Miroslav Bajtoš)
+
+
 2016-12-22, Version 3.0.1
 =========================
 
