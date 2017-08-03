@@ -103,6 +103,20 @@ describe('route-helper', function() {
       });
   });
 
+  it('converts { type: file\' } to { schema: { type: \'file\' } }', function() {
+    var TestModel = loopback.createModel('TestModel', {street: String});
+    var entry = createAPIDoc({
+      accepts: [
+        {name: 'changes', type: 'file'},
+      ],
+    });
+    var paramDoc = entry.operation.parameters[0];
+    expect(paramDoc).to.have.property('type', 'file');
+    expect(paramDoc).to.have.property('in', 'form');
+    expect(paramDoc).to.have.property('allowMultiple', false);
+    expect(paramDoc).to.have.property('description', 'File to upload');
+  });
+
   it('converts path params when they exist in the route name', function() {
     var entry = createAPIDoc({
       accepts: [
