@@ -434,6 +434,14 @@ describe('route-helper', function() {
       .to.have.property('schema')
       .eql({$ref: '#/definitions/User'});
   });
+
+  it('allows a custom `tag` name to be set', function() {
+    var doc = createAPIDoc(
+      {},
+      {name: 'User', ctor: {settings: {swagger: {tag: {name: 'Member'}}}}});
+    expect(doc.operation.tags[0])
+      .to.eql('Member');
+  });
 });
 
 // Easy wrapper around createRoute

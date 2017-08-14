@@ -25,4 +25,20 @@ describe('tag-builder', function() {
 
     expect(tag.description).to.eql('1\n2\n3');
   });
+
+  it('should use custom swagger name if provided', function() {
+    var tag = tagBuilder.buildTagFromClass({
+      ctor: {settings: {swagger: {tag: {name: 'Something Else'}}}},
+    });
+
+    expect(tag.name).to.eql('Something Else');
+  });
+
+  it('sets external spec properties from model options', function() {
+    var tag = tagBuilder.buildTagFromClass({
+      ctor: {settings: {swagger: {tag: {externalDocs: {url: 'http://google.com'}}}}},
+    });
+
+    expect(tag.externalDocs).to.eql({url: 'http://google.com'});
+  });
 });

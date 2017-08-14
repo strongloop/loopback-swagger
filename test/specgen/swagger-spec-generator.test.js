@@ -128,7 +128,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app);
       expect(swaggerResource.tags).to.eql([
-        {name: 'Product', description: 'a-description\nline2'},
+        {name: 'Product', description: 'a-description\nline2', externalDocs: undefined},
       ]);
     });
   });
