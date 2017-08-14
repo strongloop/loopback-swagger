@@ -1,3 +1,17 @@
+2017-08-14, Version 4.1.0
+=========================
+
+ * Allow externalDocs and custom names for models (Zak Barbuto)
+
+ * Add support for file-type parameters (Zak Barbuto)
+
+ * Add community maintainers to CODEOWNERS (Miroslav Bajtoš)
+
+ * Add CODEOWNER file (Diana Lau)
+
+ * Update eslint config to the latest (Miroslav Bajtoš)
+
+
 2017-04-27, Version 4.0.3
 =========================
 
