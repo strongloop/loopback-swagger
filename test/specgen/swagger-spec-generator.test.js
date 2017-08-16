@@ -409,6 +409,78 @@ describe('swagger definition', function() {
     });
   });
 
+  describe('updateOnly', function() {
+    it('should generate two swagger model definitions when forceId is undefined', function() {
+      var app = createLoopbackAppWithModelWithForceId();
+      var swaggerResource = createSwaggerObject(app);
+      // Additional swagger object - $new_Product is generated since Product
+      // model has generated ID and forceId is not set to false. This object
+      // is used for create operation where it excludes 'id' property
+      expect(Object.keys(swaggerResource.definitions))
+          .to.include.members(['$new_Product', 'Product']);
+    });
+
+    it('should generate two swagger model definitions when forceId is true', function() {
+      var app = createLoopbackAppWithModelWithForceId(true);
+      var swaggerResource = createSwaggerObject(app);
+      // Additional swagger object - $new_Product is generated since Product
+      // model has generated ID and forceId is not set to false. This object
+      // is used for create operation where it excludes 'id' property
+      expect(Object.keys(swaggerResource.definitions))
+          .to.include.members(['$new_Product', 'Product']);
+    });
+
+    it('should generate one swagger model definition when forceId is false', function() {
+      var app = createLoopbackAppWithModelWithForceId(false);
+      var swaggerResource = createSwaggerObject(app);
+      expect(Object.keys(swaggerResource.definitions))
+          .to.not.include(['$new_Product']);
+      expect(Object.keys(swaggerResource.definitions))
+          .to.include.members(['Product']);
+    });
+
+    it('should use $new_Product definition for post/create operation', function() {
+      var app = createLoopbackAppWithModelWithForceId();
+      var swaggerResource = createSwaggerObject(app);
+      // Post(create) operation should reference $new_Product
+      expect(swaggerResource.paths['/Products'].post.parameters[0].schema.$ref)
+          .to.equal('#/definitions/$new_Product');
+      // patch or any other operation should reference Product
+      expect(swaggerResource.paths['/Products'].patch.parameters[0].schema.$ref)
+          .to.equal('#/definitions/Product');
+    });
+
+    it('should use Product swagger definition for all operations', function() {
+      var app = createLoopbackAppWithModelWithForceId(false);
+      var swaggerResource = createSwaggerObject(app);
+      // post(create), patch or any other operation should reference Product
+      expect(swaggerResource.paths['/Products'].post.parameters[0].schema.$ref)
+          .to.equal('#/definitions/Product');
+      expect(swaggerResource.paths['/Products'].patch.parameters[0].schema.$ref)
+          .to.equal('#/definitions/Product');
+    });
+  });
+
+  function createLoopbackAppWithModelWithForceId(forceId) {
+    var app = loopback();
+    app.dataSource('db', {connector: 'memory'});
+    var Product;
+    if(forceId === 'undefined') {
+      Product = loopback.createModel('Product', {
+        foo: {type: 'string', required: true},
+      }, {forceId: false});
+    } else {
+      Product = loopback.createModel('Product', {
+        foo: {type: 'string', required: true},
+      }, {forceId: forceId});
+    }
+    app.model(Product, {dataSource: 'db'});
+    // Simulate a restApiRoot set in config
+    app.set('restApiRoot', '/api');
+    app.use(app.get('restApiRoot'), loopback.rest());
+    return app;
+  }
+
   function createLoopbackAppWithModel(apiRoot) {
     var app = loopback();
 
