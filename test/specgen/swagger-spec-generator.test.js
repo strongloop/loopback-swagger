@@ -447,7 +447,8 @@ describe('swagger definition', function() {
           .to.include.members(['Product']);
     });
 
-    it('should use $new_Product definition for post/create operation', function() {
+    it('should use $new_Product definition for post/create operation when ' +
+        'forceId is in effect', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app);
       // Post(create) operation should reference $new_Product
@@ -458,7 +459,8 @@ describe('swagger definition', function() {
           .to.equal('#/definitions/Product');
     });
 
-    it('should use Product swagger definition for all operations', function() {
+    it('should use Product swagger definition for all operations when ' +
+        'forceId is false', function() {
       const options = {
         forceId: false,
       };
@@ -477,11 +479,9 @@ describe('swagger definition', function() {
 
     app.dataSource('db', {connector: 'memory'});
 
-    var modelSettings;
-    if (options === undefined || options.forceId === undefined) {
-      modelSettings = {description: ['a-description', 'line2']};
-    } else {
-      modelSettings = {description: ['a-description', 'line2'], forceId: options.forceId};
+    const modelSettings = {description: ['a-description', 'line2']};
+    if (options && options.forceId !== undefined) {
+      modelSettings.forceId = options.forceId;
     }
 
     var Product = loopback.createModel('Product', {
