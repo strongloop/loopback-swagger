@@ -1,3 +1,13 @@
+2017-08-23, Version 4.2.0
+=========================
+
+ * Support updateOnly feature (#92) (Rashmi Hunt)
+
+ * Add stalebot configuration (Kevin Delisle)
+
+ * Update Issue and PR Templates (#95) (Sakib Hasan)
+
+
 2017-08-14, Version 4.1.0
 =========================
 
