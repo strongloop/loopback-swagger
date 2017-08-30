@@ -127,7 +127,20 @@ describe('route-helper', function() {
     var paramDoc = entry.operation.parameters[0];
     expect(paramDoc).to.have.property('in', 'path');
     expect(paramDoc).to.have.property('name', 'id');
-    expect(paramDoc).to.have.property('required', false);
+    expect(paramDoc).to.have.property('required', true);
+  });
+
+  it('sets required to be true for path params', function() {
+    var entry = createAPIDoc({
+      accepts: [
+        {arg: 'id', type: 'string', http: {source: 'path'}},
+      ],
+      path: '/test/:id',
+    });
+    var paramDoc = entry.operation.parameters[0];
+    expect(paramDoc).to.have.property('in', 'path');
+    expect(paramDoc).to.have.property('name', 'id');
+    expect(paramDoc).to.have.property('required', true);
   });
 
   // FIXME need regex in routeHelper.acceptToParameter
