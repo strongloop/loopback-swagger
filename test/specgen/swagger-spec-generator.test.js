@@ -482,6 +482,34 @@ describe('swagger definition', function() {
       expect(swaggerResource.paths['/Products'].patch.parameters[0].schema.$ref)
           .to.equal('#/definitions/Product');
     });
+
+    it('should generate one swagger model definitions when ' +
+        'generateOperationScopedModels is false',
+        function() {
+          var app = createLoopbackAppWithModel();
+          var swaggerResource = createSwaggerObject(app, {
+            generateOperationScopedModels: false,
+          });
+          // when generateOperationScopedModels is false, then even if forceId is true and
+          // generated id is true there will be only one model (Product) generated.
+          expect(Object.keys(swaggerResource.definitions))
+              .to.not.include(['$new_Product']);
+          expect(Object.keys(swaggerResource.definitions))
+              .to.include.members(['Product']);
+        });
+
+    it('should generate one swagger model definitions when ' +
+        'generateOperationScopedModels is undefined(false)',
+        function() {
+          var app = createLoopbackAppWithModel();
+          var swaggerResource = createSwaggerObject(app);
+          // when generateOperationScopedModels is undefined the value defaults to false. Then even if
+          // forceId is true and generated id is true there will be only one model (Product) generated.
+          expect(Object.keys(swaggerResource.definitions))
+              .to.not.include(['$new_Product']);
+          expect(Object.keys(swaggerResource.definitions))
+              .to.include.members(['Product']);
+        });
   });
 
   function createLoopbackAppWithModel(options) {
