@@ -414,7 +414,9 @@ describe('swagger definition', function() {
         function() {
           // forceId is undefined since forceId is not passed into the model
           var app = createLoopbackAppWithModel();
-          var swaggerResource = createSwaggerObject(app);
+          var swaggerResource = createSwaggerObject(app, {
+            generateOperationScopedModels: true,
+          });
           // Additional swagger object - $new_Product is generated since Product
           // model has generated ID and forceId is not set to false. This object
           // is used for create operation where it excludes 'id' property
@@ -427,7 +429,9 @@ describe('swagger definition', function() {
         forceId: true,
       };
       var app = createLoopbackAppWithModel(options);
-      var swaggerResource = createSwaggerObject(app);
+      var swaggerResource = createSwaggerObject(app, {
+        generateOperationScopedModels: true,
+      });
       // Additional swagger object - $new_Product is generated since Product
       // model has generated ID and forceId is not set to false. This object
       // is used for create operation where it excludes 'id' property
@@ -440,7 +444,9 @@ describe('swagger definition', function() {
         forceId: false,
       };
       var app = createLoopbackAppWithModel(options);
-      var swaggerResource = createSwaggerObject(app);
+      var swaggerResource = createSwaggerObject(app, {
+        generateOperationScopedModels: true,
+      });
       expect(Object.keys(swaggerResource.definitions))
           .to.not.include(['$new_Product']);
       expect(Object.keys(swaggerResource.definitions))
@@ -450,7 +456,9 @@ describe('swagger definition', function() {
     it('should use $new_Product definition for post/create operation when ' +
         'forceId is in effect', function() {
       var app = createLoopbackAppWithModel();
-      var swaggerResource = createSwaggerObject(app);
+      var swaggerResource = createSwaggerObject(app, {
+        generateOperationScopedModels: true,
+      });
       // Post(create) operation should reference $new_Product
       expect(swaggerResource.paths['/Products'].post.parameters[0].schema.$ref)
           .to.equal('#/definitions/$new_Product');
@@ -465,7 +473,9 @@ describe('swagger definition', function() {
         forceId: false,
       };
       var app = createLoopbackAppWithModel(options);
-      var swaggerResource = createSwaggerObject(app);
+      var swaggerResource = createSwaggerObject(app, {
+        generateOperationScopedModels: true,
+      });
       // post(create), patch or any other operation should reference Product
       expect(swaggerResource.paths['/Products'].post.parameters[0].schema.$ref)
           .to.equal('#/definitions/Product');
