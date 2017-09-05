@@ -1,3 +1,13 @@
+2017-09-05, Version 4.3.0
+=========================
+
+ * Set required to be true for path parameters (Raymond Feng)
+
+ * Add stalebot configuration (Kevin Delisle)
+
+ * Update Issue and PR Templates (#95) (Sakib Hasan)
+
+
 2017-08-14, Version 4.1.0
 =========================
 
