@@ -1,4 +1,14 @@
-2017-08-23, Version 4.2.0
+2017-09-05, Version 5.0.0
+=========================
+
+ * Enable 'updateOnly' feature based on generateOperationScopedModels (#99) (Rashmi Hunt)
+
+ * Bump version to 5.0.0 (Raymond Feng)
+
+ * Set required to be true for path parameters (Raymond Feng)
+
+
+2017-08-22, Version 4.2.0
 =========================
 
  * Support updateOnly feature (#92) (Rashmi Hunt)
