@@ -1,3 +1,15 @@
+2017-10-13, Version 5.1.0
+=========================
+
+ * update strong-globalize to 3.1.0 (shimks)
+
+ * CODEOWNERS: add zbarbuto (Miroslav Bajtoš)
+
+ * update globalize string (Diana Lau)
+
+ * fix basePath, add store.json (wing328)
+
+
 2017-09-05, Version 5.0.0
 =========================
 
