@@ -1,3 +1,9 @@
+2017-10-27, Version 5.2.1
+=========================
+
+ * Fix file upload attachments (Zak Barbuto)
+
+
 2017-10-27, Version 5.2.0
 =========================
 
