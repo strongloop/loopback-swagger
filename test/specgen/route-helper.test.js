@@ -112,7 +112,7 @@ describe('route-helper', function() {
     });
     var paramDoc = entry.operation.parameters[0];
     expect(paramDoc).to.have.property('type', 'file');
-    expect(paramDoc).to.have.property('in', 'form');
+    expect(paramDoc).to.have.property('in', 'formData');
     expect(paramDoc).to.have.property('allowMultiple', false);
     expect(paramDoc).to.have.property('description', 'File to upload');
   });
