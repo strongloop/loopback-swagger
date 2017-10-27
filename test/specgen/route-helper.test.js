@@ -167,6 +167,20 @@ describe('route-helper', function() {
     expect(paramDoc).to.have.property('format', 'byte');
   });
 
+  it('correctly removes undocumented accepts', function() {
+    var doc = createAPIDoc({
+      accepts: [
+        {arg: 'id', type: 'string'},
+        {arg: 'undocumented', type: 'string', documented: false},
+      ],
+    });
+    expect(doc.operation.parameters.length).to.equal(1);
+    var paramDoc = doc.operation.parameters[0];
+    expect(paramDoc).to.have.property('in', 'query');
+    expect(paramDoc).to.have.property('type', 'string');
+    expect(paramDoc).to.have.property('name', 'id');
+  });
+
   it('correctly converts return types (arrays)', function() {
     var doc = createAPIDoc({
       returns: [
