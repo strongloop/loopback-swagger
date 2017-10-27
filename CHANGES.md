@@ -1,3 +1,9 @@
+2017-10-27, Version 5.2.0
+=========================
+
+ * feat(route-helper): Add 'documented' flag for hiding params (Samuel Reed)
+
+
 2017-10-13, Version 5.1.0
 =========================
 
