@@ -91,6 +91,49 @@ describe('schema-builder', function() {
           },
         },
       }},
+    {in: {
+      type: {
+        foo: 'string',
+        bar: 'number',
+      },
+      example: {
+        foo: 'something',
+        bar: 'something else',
+      },
+    },
+      out: {
+        type: 'object',
+        properties: {
+          foo: {
+            type: 'string',
+          },
+          bar: {
+            type: 'number',
+            format: 'double',
+          },
+        },
+        example: {
+          foo: 'something',
+          bar: 'something else',
+        },
+      }},
+    {in: {
+      type: {
+        foo: {
+          type: 'string',
+          example: 'hello world',
+        },
+      },
+    },
+      out: {
+        type: 'object',
+        properties: {
+          foo: {
+            type: 'string',
+            example: 'hello world',
+          },
+        },
+      }},
   ]);
 
   describeTestCases('for extra metadata', [
