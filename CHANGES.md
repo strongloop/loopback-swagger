@@ -1,3 +1,11 @@
+2017-11-20, Version 5.2.2
+=========================
+
+ * Improve swagger mapping (Raymond Feng)
+
+ * chore: update license (Diana Lau)
+
+
 2017-10-27, Version 5.2.1
 =========================
 
