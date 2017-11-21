@@ -80,4 +80,21 @@ describe('Swagger spec v2 generator', function() {
     expect(code.Pet).contain(
       'Pet.findPets = function(x_tags, x_limit, callback)');
   });
+
+  it('generates embedded models', function() {
+    var code = generator.generateRemoteMethods(pet4);
+    expect(pet4.definitions).to.eql({
+      'findPets_response_200': {
+        name: 'findPets_response_200',
+        properties: {
+          id: {
+            type: 'number', required: true, format: 'int64',
+          },
+          name: {
+            type: 'string', required: true,
+          },
+        },
+      },
+    });
+  });
 });
