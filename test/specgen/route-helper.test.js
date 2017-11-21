@@ -401,6 +401,18 @@ describe('route-helper', function() {
     expect(doc.operation.responses).to.not.have.property(204);
   });
 
+  it('supports example responses', function() {
+    var doc = createAPIDoc({
+      returns: [
+        {arg: 'something', http: {source: 'body'}, example: {foo: 'bar'}},
+      ],
+      path: '/test',
+    });
+    expect(doc.operation.responses['200']).to.property('examples');
+    expect(doc.operation.responses['200'].examples).to.have.property('application/json');
+    expect(doc.operation.responses['200'].examples['application/json']).to.eql({foo: 'bar'});
+  });
+
   it('includes custom http error status code in `responseMessages`', function() {
     var doc = createAPIDoc({
       http: {

@@ -82,6 +82,23 @@ describe('model-helper', function() {
     });
   });
 
+  describe('examples', function() {
+    it('supports setting an example model', function() {
+      var aClass = createModelCtor({
+        content: 'string',
+      });
+      aClass.ctor.definition.settings = {
+        swagger: {
+          example: {content: 'Hello world!'},
+        },
+      };
+      var def = getDefinitionsForModel(aClass.ctor).testModel;
+      expect(def).to.have.property('example').and.to.eql(
+        {content: 'Hello world!'}
+      );
+    });
+  });
+
   describe('hidden properties', function() {
     it('should hide properties marked as "hidden"', function() {
       var aClass = createModelCtor({
