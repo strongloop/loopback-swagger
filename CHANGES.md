@@ -1,3 +1,9 @@
+2017-11-21, Version 5.3.0
+=========================
+
+ * Add support for examples in models and responses (Zak Barbuto)
+
+
 2017-11-20, Version 5.2.2
 =========================
 
