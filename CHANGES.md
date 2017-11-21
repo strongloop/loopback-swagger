@@ -1,3 +1,9 @@
+2017-11-21, Version 5.4.0
+=========================
+
+ * Handle embedded schemas for parameter/response (Raymond Feng)
+
+
 2017-11-21, Version 5.3.0
 =========================
 
