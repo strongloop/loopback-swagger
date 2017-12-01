@@ -13,6 +13,7 @@ var pet2 = require('./pet-expanded.json');
 var pet3 = require('./pet-without-tags.json');
 var pet4 = require('./pet-with-embedded-schema.json');
 var note = require('./note.json');
+var pet5 = require('./pet-with-refs.json');
 var generator = new V2Generator();
 
 describe('Swagger spec v2 generator', function() {
@@ -33,6 +34,18 @@ describe('Swagger spec v2 generator', function() {
 
   it('parse operations', function() {
     var operations = generator.getOperations(pet2);
+    expect(operations['/pet-app/pets'].get.returns).to.eql(
+      [{
+        description: 'pet response',
+        type: ['pet'],
+        arg: 'data',
+        root: true,
+      }]
+    );
+  });
+
+  it('parse operations with $REF', function() {
+    var operations = generator.getOperations(pet5);
     expect(operations['/pet-app/pets'].get.returns).to.eql(
       [{
         description: 'pet response',
