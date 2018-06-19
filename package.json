@@ -2,6 +2,9 @@
   "name": "loopback-swagger",
   "version": "4.3.0",
   "description": "Integration between LoopBack and Swagger API specs",
+  "publishConfig": {
+    "tag": "lts"
+  },
   "engines": {
     "node": ">=4"
   },
