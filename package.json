@@ -2,7 +2,7 @@
   "name": "loopback-swagger",
   "version": "2.9.0",
   "publishConfig": {
-    "tag": "lts"
+    "tag": "legacy"
   },
   "description": "Integration between LoopBack and Swagger API specs",
   "main": "index.js",
