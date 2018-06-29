@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "Wersja {{Swagger spec}} nie jest obsługiwana",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: pomijanie nieznanego typu {0}.",
+  "887507f75b7a4051e4c604f1f187d7be": "Ostrzeżenie: nieznany typ LDL {0}, zamiast niego zostanie użyty typ \"{{any}}\"",
+  "ea289bffae13f78fad7794b62395008d": "Istnieje trasa bez klasy: {0}",
+  "f56715842719b19ea94d85dd1f024684": "Ostrzeżenie: wykryto wiele metod zdalnych w tym samym punkcie końcowym HTTP. Identyfikatory {{Swagger operation ids}} NIE będą unikalne."
+}
+
