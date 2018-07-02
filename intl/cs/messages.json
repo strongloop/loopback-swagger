@@ -1,0 +1,8 @@
+{
+  "47a65938fb7d8999530eb834c7f88bfe": "Verze {{Swagger spec}} není podporována",
+  "8695812bf6bbddb8096a6084b3214375": "{{Swagger}}: Přeskočení neznámého typu {0}.",
+  "887507f75b7a4051e4c604f1f187d7be": "Varování: Neznámý typ LDL {0}, místo toho použití \"{{any}}\" ",
+  "ea289bffae13f78fad7794b62395008d": "Trasa existuje bez třídy: {0}",
+  "f56715842719b19ea94d85dd1f024684": "Varování: Zjištěno více vzdálených metod ve stejném koncovém bodu HTTP. {{Swagger operation ids}} NEBUDE jedinečný."
+}
+
