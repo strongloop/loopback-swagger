@@ -28,8 +28,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
-    "eslint": "^3.12.2",
-    "eslint-config-loopback": "^8.0.0",
+    "eslint": "^5.0.1",
+    "eslint-config-loopback": "^10.0.0",
     "loopback": "^3.0.0",
     "mocha": "^3.2.0"
   },
