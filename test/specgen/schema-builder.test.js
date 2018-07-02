@@ -70,27 +70,27 @@ describe('schema-builder', function() {
         },
       },
     },
-      out: {
-        type: 'object',
-        properties: {
-          foo: {
-            type: 'string',
-          },
-          bar: {
-            type: 'number',
-            format: 'double',
-          },
-          quux: {
-            properties: {
-              quuux: {
-                format: 'date-time',
-                type: 'string',
-              },
-            },
-            type: 'object',
-          },
+    out: {
+      type: 'object',
+      properties: {
+        foo: {
+          type: 'string',
         },
-      }},
+        bar: {
+          type: 'number',
+          format: 'double',
+        },
+        quux: {
+          properties: {
+            quuux: {
+              format: 'date-time',
+              type: 'string',
+            },
+          },
+          type: 'object',
+        },
+      },
+    }},
     {in: {
       type: {
         foo: 'string',
@@ -101,22 +101,22 @@ describe('schema-builder', function() {
         bar: 'something else',
       },
     },
-      out: {
-        type: 'object',
-        properties: {
-          foo: {
-            type: 'string',
-          },
-          bar: {
-            type: 'number',
-            format: 'double',
-          },
+    out: {
+      type: 'object',
+      properties: {
+        foo: {
+          type: 'string',
         },
-        example: {
-          foo: 'something',
-          bar: 'something else',
+        bar: {
+          type: 'number',
+          format: 'double',
         },
-      }},
+      },
+      example: {
+        foo: 'something',
+        bar: 'something else',
+      },
+    }},
     {in: {
       type: {
         foo: {
@@ -125,15 +125,15 @@ describe('schema-builder', function() {
         },
       },
     },
-      out: {
-        type: 'object',
-        properties: {
-          foo: {
-            type: 'string',
-            example: 'hello world',
-          },
+    out: {
+      type: 'object',
+      properties: {
+        foo: {
+          type: 'string',
+          example: 'hello world',
         },
-      }},
+      },
+    }},
   ]);
 
   describeTestCases('for extra metadata', [
@@ -162,7 +162,7 @@ describe('schema-builder', function() {
         aaa: 'default-key-val',
         bbb: null,
         ccc: {ddd: 'val', eee: null}}},
-      out: {type: 'string', default: {aaa: 'default-key-val', ccc: {ddd: 'val'}}}},
+    out: {type: 'string', default: {aaa: 'default-key-val', ccc: {ddd: 'val'}}}},
   ]);
 
   describeTestCases('for built-in LoopBack types', [

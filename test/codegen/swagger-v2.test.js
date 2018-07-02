@@ -56,7 +56,7 @@ describe('Swagger spec v2 generator', function() {
     );
   });
 
-  it('generates remote methods', function() {
+  it('generates remote methods from expanded spec', function() {
     var code = generator.generateRemoteMethods(pet2,
       {modelName: 'Pet'}).Pet;
     expect(code).contain('Pet.findPets = function(tags, limit, callback)');
