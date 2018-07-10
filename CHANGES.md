@@ -1,3 +1,23 @@
+2018-07-10, Version 5.6.0
+=========================
+
+ * specgen: emit correct non-root return types (Dan Jarvis)
+
+ * Update mocha & chai to latest (Miroslav Bajtoš)
+
+ * Disable package-lock feature of npm (Miroslav Bajtoš)
+
+ * Update eslint + config to latest (Miroslav Bajtoš)
+
+ * Update strong-globalize and debug to latest (Miroslav Bajtoš)
+
+ * Travis: add Node.js 8.x and 10.x (Miroslav Bajtoš)
+
+ * Drop support for Node.js 4.x (Miroslav Bajtoš)
+
+ * [WebFM] cs/pl/ru translation (candytangnb)
+
+
 2017-12-04, Version 5.5.0
 =========================
 
