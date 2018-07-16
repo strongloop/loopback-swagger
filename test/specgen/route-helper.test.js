@@ -277,7 +277,8 @@ describe('route-helper', function() {
       var f = routeHelper.acceptToParameter(
         {verb: 'get', path: 'path'},
         A_CLASS_DEF,
-        new TypeRegistry());
+        new TypeRegistry()
+      );
       var result = f({description: ['1', '2', '3']});
       expect(result.description).to.eql('1\n2\n3');
     });
@@ -286,7 +287,8 @@ describe('route-helper', function() {
       var f = routeHelper.acceptToParameter(
         {verb: 'put', path: 'path'},
         A_CLASS_DEF,
-        new TypeRegistry());
+        new TypeRegistry()
+      );
       var result = f({http: {source: 'form'}});
       expect(result.in).to.equal('formData');
     });
@@ -488,7 +490,8 @@ describe('route-helper', function() {
   it('adds class name to `tags`', function() {
     var doc = createAPIDoc(
       {method: 'User.login'},
-      {name: 'User'});
+      {name: 'User'}
+    );
     expect(doc.operation.tags).to.contain('User');
   });
 
@@ -506,7 +509,8 @@ describe('route-helper', function() {
       {
         accepts: [{arg: 'data', type: 'object', http: {source: 'body'}}],
       },
-      {name: 'User'});
+      {name: 'User'}
+    );
     var param = doc.operation.parameters[0];
     expect(param)
       .to.have.property('schema')
@@ -523,7 +527,8 @@ describe('route-helper', function() {
           http: {source: 'body'},
         }],
       },
-      {name: 'User'});
+      {name: 'User'}
+    );
     var param = doc.operation.parameters[0];
     expect(param)
       .to.have.property('schema')
@@ -533,7 +538,8 @@ describe('route-helper', function() {
   it('allows a custom `tag` name to be set', function() {
     var doc = createAPIDoc(
       {},
-      {name: 'User', ctor: {settings: {swagger: {tag: {name: 'Member'}}}}});
+      {name: 'User', ctor: {settings: {swagger: {tag: {name: 'Member'}}}}}
+    );
     expect(doc.operation.tags[0])
       .to.eql('Member');
   });
