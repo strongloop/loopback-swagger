@@ -46,6 +46,13 @@ describe('swagger definition', function() {
       expect(swaggerResource.info)
         .to.have.property('title', 'loopback-swagger');
     });
+
+    it('provides info.description', function() {
+      expect(swaggerResource.info).to.have.property(
+        'description',
+        'Integration between LoopBack and Swagger API specs'
+      );
+    });
   });
 
   describe('basePath', function() {
