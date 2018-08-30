@@ -1,3 +1,11 @@
+2018-08-30, Version 5.7.0
+=========================
+
+ * specgen: Retrieve description from package.json (Melle Boersma)
+
+ * Upgrade eslint-config-loopback + fix formatting (Miroslav Bajtoš)
+
+
 2018-07-10, Version 5.6.0
 =========================
 
