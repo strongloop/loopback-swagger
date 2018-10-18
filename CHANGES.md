@@ -1,3 +1,9 @@
+2018-10-18, Version 5.7.1
+=========================
+
+ * README: update LTS status (Miroslav Bajtoš)
+
+
 2018-08-30, Version 5.7.0
 =========================
 

@@ -1,6 +1,6 @@
 {
   "name": "loopback-swagger",
-  "version": "5.7.0",
+  "version": "5.7.1",
   "description": "Integration between LoopBack and Swagger API specs",
   "engines": {
     "node": ">=6"
