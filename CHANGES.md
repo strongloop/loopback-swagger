@@ -1,3 +1,9 @@
+2019-01-07, Version 5.7.2
+=========================
+
+ * Fix route helper to ignore status/header retvals (Y.Shing)
+
+
 2018-10-18, Version 5.7.1
 =========================
 
