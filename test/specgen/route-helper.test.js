@@ -80,6 +80,22 @@ describe('route-helper', function() {
       });
   });
 
+  it('does not include arguments having http.target set to header|status', function() {
+    var TestModel = loopback.createModel('TestModel', {street: String});
+    var entry = createAPIDoc({
+      returns: [
+        {name: 'changes', type: 'ReadableStream'},
+        {name: 'status', type: 'number', http: {target: 'status'}},
+        {name: 'header', type: 'string', http: {target: 'header'}},
+      ],
+    });
+    var responseMessage = getResponseMessage(entry.operation);
+    expect(responseMessage)
+      .to.have.property('schema').eql({
+        type: 'file',
+      });
+  });
+
   it('does not produce required array if no required property is defined', function() {
     var TestModel = loopback.createModel('TestModel', {street: String});
     var entry = createAPIDoc({
