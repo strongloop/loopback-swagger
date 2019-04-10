@@ -22,7 +22,7 @@ describe('Swagger spec v2 generator', function() {
   it('generates remote methods', function() {
     var code = generator.generateRemoteMethods(petStoreV2Spec,
       {modelName: 'Store'});
-    expect(code.store).to.be.a('string');
+    expect(code.Store).to.be.a('string');
   });
 
   it('generates remote methods without tags', function() {
@@ -37,15 +37,15 @@ describe('Swagger spec v2 generator', function() {
   it('generates remote methods with special names', function() {
     generator.mapTagsToModels(pet6);
     var models = generateModels(pet6);
-    expect(models.Pet_Controller).to.be.a('object');
+    expect(models.PetController).to.be.a('object');
     var code = generator.generateRemoteMethods(pet6);
-    expect(code.Pet_Controller).to.be.a('string');
-    var petController = code.Pet_Controller;
+    expect(code.PetController).to.be.a('string');
+    var petController = code.PetController;
     expect(petController).to.contain(
-      'Pet_Controller.petFindPets = function(tags, x_limit, callback) {'
+      'PetController.findPets = function(tags, xLimit, callback) {'
     );
     expect(petController).to.contain(
-      'Pet.find({limit: x_limit, where: {inq: tags}}, callback);'
+      'Pet.find({limit: xLimit, where: {inq: tags}}, callback);'
     );
   });
 
@@ -109,7 +109,7 @@ describe('Swagger spec v2 generator', function() {
     var code = generator.generateRemoteMethods(pet4,
       {modelName: 'Pet'});
     expect(code.Pet).contain(
-      'Pet.findPets = function(x_tags, x_limit, callback)'
+      'Pet.findPets = function(xTags, xLimit, callback)'
     );
   });
 

@@ -27,7 +27,7 @@
     "application/json"
   ],
   "x-implementation-templates": {
-    "find": "${model}.find({limit: x_limit, where: {inq: tags}}, callback);"
+    "find": "${model}.find({limit: xLimit, where: {inq: tags}}, callback);"
   },
   "paths": {
     "/pets": {
