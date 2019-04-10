@@ -30,7 +30,7 @@
     "chai": "^4.1.2",
     "eslint": "^5.1.0",
     "eslint-config-loopback": "^11.0.0",
-    "loopback": "^3.0.0",
+    "loopback": "^3.25.1",
     "mocha": "^5.2.0"
   },
   "license": "MIT",
