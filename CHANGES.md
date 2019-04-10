@@ -1,3 +1,13 @@
+2019-04-10, Version 5.7.3
+=========================
+
+ * chore: upgrade loopback version (Raymond Feng)
+
+ * Allow tag or param names to contain '-' or spaces (Raymond Feng)
+
+ * fix: update lodash (jannyHou)
+
+
 2019-01-07, Version 5.7.2
 =========================
 
