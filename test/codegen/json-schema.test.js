@@ -13,13 +13,13 @@ var expect = require('chai').expect;
 describe('json schema converter', function() {
   it('should handle allOf', function() {
     var models = schemaParser(spec.definitions);
-    expect(models).have.property('pet');
-    expect(models).have.property('newPet');
-    expect(models).have.property('errorModel');
-    expect(models.pet.properties.tags.type).to.eql(['string']);
-    expect(models.petGroup.relations.pets.type).to.eql('hasMany');
-    expect(models.petGroup.relations.pets.model).to.eql('pet');
-    expect(models.newPet).have.property('base', 'pet');
-    expect(models.newPet.properties).have.property('kind');
+    expect(models).have.property('Pet');
+    expect(models).have.property('NewPet');
+    expect(models).have.property('ErrorModel');
+    expect(models.Pet.properties.tags.type).to.eql(['string']);
+    expect(models.PetGroup.relations.pets.type).to.eql('hasMany');
+    expect(models.PetGroup.relations.pets.model).to.eql('pet');
+    expect(models.NewPet).have.property('base', 'Pet');
+    expect(models.NewPet.properties).have.property('kind');
   });
 });

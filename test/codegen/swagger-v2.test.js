@@ -48,7 +48,7 @@ describe('Swagger spec v2 generator', function() {
       'Pet.find({limit: xLimit, where: {inq: tags}}, callback);'
     );
     expect(petController).to.contain(
-      'PetController.findPetById = function(pet_id, callback) {'
+      'PetController.findPetById = function(petId, callback) {'
     );
 
     expect(petController).to.contain("arg: 'pet_id',");
@@ -60,7 +60,7 @@ describe('Swagger spec v2 generator', function() {
     expect(operations['/pet-app/pets'].get.returns).to.eql(
       [{
         description: 'pet response',
-        type: ['pet'],
+        type: ['Pet'],
         arg: 'data',
         root: true,
       }]
@@ -72,7 +72,7 @@ describe('Swagger spec v2 generator', function() {
     expect(operations['/pet-app/pets'].get.returns).to.eql(
       [{
         description: 'pet response',
-        type: ['pet'],
+        type: ['Pet'],
         arg: 'data',
         root: true,
       }]
@@ -90,7 +90,7 @@ describe('Swagger spec v2 generator', function() {
     expect(code).contain('Pet.remoteMethod(\'deletePet\'');
     expect(code).contain('Pet.createPet = function(pet, callback)');
     expect(code).contain('Pet.remoteMethod(\'createPet\'');
-    expect(code).contain('type: [ \'pet\' ],');
+    expect(code).contain('type: [ \'Pet\' ],');
     expect(code).contain(
       'Pet.find({limit: limit, where: {inq: tags}}, callback);'
     );
@@ -120,10 +120,10 @@ describe('Swagger spec v2 generator', function() {
   });
 
   it('generates embedded models', function() {
-    var code = generator.generateRemoteMethods(pet4);
+    generator.generateRemoteMethods(pet4);
     expect(pet4.definitions).to.eql({
       'findPets_response_200': {
-        name: 'findPets_response_200',
+        name: 'FindPetsResponse200',
         properties: {
           id: {
             type: 'number', required: true, format: 'int64',
