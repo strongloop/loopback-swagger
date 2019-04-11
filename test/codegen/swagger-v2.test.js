@@ -47,6 +47,12 @@ describe('Swagger spec v2 generator', function() {
     expect(petController).to.contain(
       'Pet.find({limit: xLimit, where: {inq: tags}}, callback);'
     );
+    expect(petController).to.contain(
+      'PetController.findPetById = function(pet_id, callback) {'
+    );
+
+    expect(petController).to.contain("arg: 'pet_id',");
+    expect(petController).to.contain("http: { verb: 'get', path: '/pets/:pet_id' },");
   });
 
   it('parse operations', function() {

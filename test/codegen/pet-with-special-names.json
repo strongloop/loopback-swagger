@@ -125,12 +125,14 @@
         }
       }
     },
-    "/pets/{id}": {
+    "/pets/{pet-id}": {
       "get": {
         "description": "Returns a user based on a single ID, if the user does not have access to the pet",
-        "operationId": "findPetById{id}",
+        "operationId": "findPetById{pet-id}",
+        "tags": ["Pet Controller"],
+        "x-operation-name": "findPetById",
         "x-implementation-template" : {
-          "loopback": "Pet.findById(id, callback);"
+          "loopback": "Pet.findById(pet_id, callback);"
         },
         "produces": [
           "application/json",
@@ -140,7 +142,7 @@
         ],
         "parameters": [
           {
-            "name": "id",
+            "name": "pet_id",
             "in": "path",
             "description": "ID of pet to fetch",
             "required": true,
