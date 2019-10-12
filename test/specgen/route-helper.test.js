@@ -475,6 +475,32 @@ describe('route-helper', function() {
     expect(doc.operation.responses).to.not.have.property(204);
   });
 
+  it('includes custom http errorStatus', function() {
+    const doc = createAPIDoc({
+      http: {
+        status: 201,
+        errorStatus: 404,
+      },
+    });
+
+    const responses = doc.operation.responses;
+    expect(Object.keys(responses)).to.eql(['201', '404']);
+    expect(responses['404']).to.eql({
+      description: 'Unknown error',
+    });
+  });
+
+  it('does not include `undefined` error response in `responseMessages` when ' +
+    'http is set, but erorrStatus is not set', function() {
+    const doc = createAPIDoc({
+      http: {
+        status: 201,
+      },
+    });
+
+    expect(Object.keys(doc.operation.responses)).to.eql(['201']);
+  });
+
   it('supports example responses', function() {
     var doc = createAPIDoc({
       returns: [
