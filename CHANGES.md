@@ -1,3 +1,15 @@
+2019-10-15, Version 5.8.0
+=========================
+
+ * Fix handling of http.errorStatus (Matthias Tylkowski)
+
+ * Add Node.js 12.x to Travis CI config (Miroslav Bajtoš)
+
+ * Drop support for Node.js 6.x (Miroslav Bajtoš)
+
+ * chore: update copyrights years (Agnes Lin)
+
+
 2019-04-10, Version 5.7.3
 =========================
 
