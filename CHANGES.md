@@ -1,3 +1,11 @@
+2020-03-06, Version 5.8.1
+=========================
+
+ * Update LTS status in README (Miroslav Bajtoš)
+
+ * chore: update copyright year (Diana Lau)
+
+
 2019-10-15, Version 5.8.0
 =========================
 
