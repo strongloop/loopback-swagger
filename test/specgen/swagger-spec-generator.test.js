@@ -517,6 +517,207 @@ describe('swagger definition', function() {
     });
   });
 
+  describe('model with relations', function() {
+    it('define custom model with relation property', function() {
+      var app = createConversationAndMessageModelsWithRelations();
+      var swaggerResource = createSwaggerObject(app, {
+        generateRelationProperties: true,
+      });
+
+      var definitions = swaggerResource.definitions;
+
+      expect(Object.keys(definitions))
+        .to.include.members([
+          'UserWithRelations',
+          'ConversationWithRelations',
+          'MessageWithRelations',
+        ]);
+
+      var userWithRelationsModelDefinition = definitions
+        .UserWithRelations;
+      expect(Object.keys(userWithRelationsModelDefinition.properties))
+        .to.include.members(['conversations']);
+
+      expect(userWithRelationsModelDefinition.properties.conversations).to.be.eql({
+        type: 'array',
+        items: {
+          $ref: '#/definitions/ConversationWithRelations',
+        },
+      });
+
+      var conversationWithRelationsModelDefinition = definitions
+        .ConversationWithRelations;
+      expect(Object.keys(conversationWithRelationsModelDefinition.properties))
+        .to.include.members(['messages', 'user']);
+
+      // Message hasMany relation
+      expect(conversationWithRelationsModelDefinition.properties.messages).to.be.eql({
+        type: 'array',
+        items: {
+          $ref: '#/definitions/MessageWithRelations',
+        },
+      });
+
+      // User belongsTo relation
+      expect(conversationWithRelationsModelDefinition.properties.user).to.be.eql({
+        $ref: '#/definitions/UserWithRelations',
+      });
+
+      var messageWithRelationsModelDefinition = definitions
+        .MessageWithRelations;
+      expect(Object.keys(messageWithRelationsModelDefinition.properties))
+        .to.include.members(['conversation']);
+
+      // Conversation belongsTo relation
+      expect(conversationWithRelationsModelDefinition.properties.user).to.be.eql({
+        $ref: '#/definitions/UserWithRelations',
+      });
+    });
+
+    it('includes model with relation property only for `find*` and ' +
+      '`__(get|findById)__*` methods', function() {
+      var app = createConversationAndMessageModelsWithRelations();
+      var swaggerResource = createSwaggerObject(app, {
+        generateRelationProperties: true,
+      });
+
+      // Model with relations
+      verifyResponseWithRelations(swaggerResource, 'get', [
+        '/Users'], 'UserWithRelations', true);
+
+      verifyResponseWithRelations(swaggerResource, 'get', [
+        '/Users/{id}',
+        '/Users/findOne',
+        '/Conversations/{id}/user',
+        '/Users/{id}/conversations/{nk}/user',
+      ], 'UserWithRelations', false);
+
+      verifyResponseWithRelations(swaggerResource, 'get', [
+        '/Users/{id}/conversations',
+        '/Conversations',
+      ], 'ConversationWithRelations', true);
+
+      verifyResponseWithRelations(swaggerResource, 'get', [
+        '/Users/{id}/conversations/{fk}',
+        '/Conversations/{id}',
+        '/Conversations/findOne',
+        '/Messages/{id}/conversation',
+      ], 'ConversationWithRelations', false);
+
+      verifyResponseWithRelations(swaggerResource, 'get', [
+        '/Conversations/{id}/messages',
+        '/Messages',
+        '/Users/{id}/conversations/{nk}/messages',
+      ], 'MessageWithRelations', true);
+
+      verifyResponseWithRelations(swaggerResource, 'get', [
+        '/Messages/{id}',
+        '/Conversations/{id}/messages/{fk}',
+        '/Users/{id}/conversations/{nk}/messages/{fk}',
+      ], 'MessageWithRelations', false);
+
+      // Model without relations
+      verifyResponseWithRelations(swaggerResource, 'post', [
+        '/Users',
+        '/Users/replaceOrCreate',
+        '/Users/upsertWithWhere',
+        '/Users/{id}/replace',
+      ], 'User', false);
+
+      verifyResponseWithRelations(swaggerResource, 'put', ['/Users'], 'User', false);
+
+      verifyResponseWithRelations(swaggerResource, 'patch', ['/Users'], 'User', false);
+
+      verifyResponseWithRelations(swaggerResource, 'post', [
+        '/Conversations',
+        '/Conversations/replaceOrCreate',
+        '/Conversations/upsertWithWhere',
+        '/Conversations/{id}/replace',
+      ], 'Conversation', false);
+
+      verifyResponseWithRelations(swaggerResource, 'put', [
+        '/Users/{id}/conversations/{fk}',
+      ], 'Conversation', false);
+
+      verifyResponseWithRelations(swaggerResource, 'post', [
+        '/Users/{id}/conversations',
+      ], 'Conversation', false);
+
+      verifyResponseWithRelations(swaggerResource, 'post', [
+        '/Messages',
+        '/Messages/replaceOrCreate',
+        '/Messages/upsertWithWhere',
+        '/Messages/{id}/replace',
+        '/Users/{id}/conversations/{nk}/messages',
+      ], 'Message', false);
+
+      verifyResponseWithRelations(swaggerResource, 'post', [
+        '/Conversations/{id}/messages',
+      ], 'Message', false);
+
+      verifyResponseWithRelations(swaggerResource, 'put', [
+        '/Conversations/{id}/messages/{fk}',
+        '/Users/{id}/conversations/{nk}/messages/{fk}',
+      ], 'Message', false);
+    });
+
+    it('honors model relation setting "disableInclude"', function() {
+      var app = createConversationAndMessageModelsWithRelations();
+      var swaggerResource = createSwaggerObject(app, {
+        generateRelationProperties: true,
+      });
+
+      var definitions = swaggerResource.definitions;
+
+      expect(Object.keys(definitions))
+        .to.include.members(['UserWithRelations']);
+
+      var userModelDefinition = definitions
+        .UserWithRelations;
+
+      expect(Object.keys(userModelDefinition.properties))
+        .to.not.include.members(['accessTokens']);
+    });
+
+    it('should enable generateRelationProperties from application config', function() {
+      var app = createConversationAndMessageModelsWithRelations();
+      app.set('swagger', {
+        generateRelationProperties: true,
+      });
+
+      var swaggerResource = createSwaggerObject(app);
+
+      var definitions = swaggerResource.definitions;
+
+      expect(Object.keys(definitions))
+        .to.include.members([
+          'UserWithRelations',
+          'ConversationWithRelations',
+          'MessageWithRelations',
+        ]);
+    });
+
+    it('honor generateRelationProperties method config', function() {
+      var app = createConversationAndMessageModelsWithRelations();
+      app.set('swagger', {
+        generateRelationProperties: true,
+      });
+
+      var swaggerResource = createSwaggerObject(app, {
+        generateRelationProperties: false,
+      });
+
+      var definitions = swaggerResource.definitions;
+
+      expect(Object.keys(definitions))
+        .to.not.include.members([
+          'UserWithRelations',
+          'ConversationWithRelations',
+          'MessageWithRelations',
+        ]);
+    });
+  });
+
   function createLoopbackAppWithModel(options) {
     var app = loopback();
 
@@ -541,6 +742,23 @@ describe('swagger definition', function() {
     return app;
   }
 
+  function verifyResponseWithRelations(swaggerResource, verb, paths,
+    modelWithRelations, isArray) {
+    const definition = '#/definitions/' + modelWithRelations;
+
+    const refs = Object.keys(swaggerResource.paths)
+      .filter(key => paths.includes(key))
+      .map(key => {
+        const path = swaggerResource.paths[key];
+        const schema = path[verb].responses[200].schema;
+        return isArray ? schema.items.$ref : schema.$ref;
+      });
+
+    expect(refs).to.have.lengthOf(paths.length);
+    const wrongDefinitions = refs.filter(ref => ref !== definition);
+    expect(wrongDefinitions).to.have.lengthOf(0);
+  }
+
   function givenSharedMethod(model, name, metadata) {
     model[name] = function() {};
     loopback.remoteMethod(model[name], metadata);
@@ -556,6 +774,41 @@ describe('swagger definition', function() {
     givenPrivateAppModel(app, 'Warehouse', {
       shippingAddress: {type: 'Address'},
     });
+  }
+
+  function createConversationAndMessageModelsWithRelations() {
+    var app = loopback({localRegistry: true, loadBuiltinModels: true});
+    var User = app.registry.User;
+    var AccessToken = app.registry.AccessToken;
+
+    var Message = loopback.createModel('Message', {
+      text: 'string',
+      created: 'date',
+    });
+
+    var Conversation = loopback.createModel('Conversation', {
+      created: 'date',
+    });
+
+    app.dataSource('db', {connector: 'memory'});
+
+    app.model(AccessToken, {public: false, dataSource: 'db'});
+    app.model(User, {public: true, dataSource: 'db'});
+    app.model(Conversation, {dataSource: 'db'});
+    app.model(Message, {dataSource: 'db'});
+
+    User.hasMany(Conversation);
+    Conversation.hasMany(Message);
+
+    Message.belongsTo(Conversation);
+    Conversation.belongsTo(User);
+
+    User.nestRemoting('conversations');
+    Conversation.nestRemoting('user');
+    Conversation.nestRemoting('messages');
+    Message.nestRemoting('conversation');
+
+    return app;
   }
 
   // Simple url joiner. Ensure we don't have to care about whether or not
