@@ -1,3 +1,9 @@
+2020-04-28, Version 5.9.0
+=========================
+
+ * include relations property (Matteo Padovano)
+
+
 2020-03-06, Version 5.8.1
 =========================
 
