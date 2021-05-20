@@ -526,7 +526,7 @@ describe('route-helper', function() {
 
   it('route operationId DOES include model name.', function() {
     var doc = createAPIDoc({method: 'User.login'});
-    expect(doc.operation.operationId).to.equal('User.login');
+    expect(doc.operation.operationId).to.equal('User_login');
   });
 
   it('adds class name to `tags`', function() {
