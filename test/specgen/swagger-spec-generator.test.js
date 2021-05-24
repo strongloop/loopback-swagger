@@ -369,7 +369,7 @@ describe('swagger definition', function() {
       var app = createLoopbackAppWithModel();
       var swaggerResource = createSwaggerObject(app);
       var operation = getAllOperations(swaggerResource).
-        find(_.matchesProperty('operationId', 'Product.prototype.patchAttributes'));
+        find(_.matchesProperty('operationId', 'Product_prototype.patchAttributes'));
 
       var parameters = _(operation.parameters)
         .map(_.property('name'))
@@ -410,7 +410,7 @@ describe('swagger definition', function() {
 
       expect(conflicts, 'duplicate ids').to.be.have.length(0);
       expect(swaggerResource.paths['/Products/multipath'].get.operationId)
-        .to.contain('Product.multipath');
+        .to.contain('Product_multipath');
     });
   });
 
